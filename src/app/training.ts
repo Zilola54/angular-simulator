@@ -41,10 +41,12 @@ addNumbers(10, 20)
 //пункт 8
 function changeLine(text: string, format:'uppercase'|  'lowercase' | 'capitalize'): string {
   if (format === 'uppercase') {
-    return text.toUpperCase()
+    return text.toUpperCase();
   } else if (format === 'lowercase') {
     return text.toLowerCase();
-  } else{
+  } else if (format === 'capitalize') {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  } else {
     return text
   }
 }
