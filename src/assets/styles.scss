@@ -1,0 +1,46 @@
+@use './fonts';
+@use './normalize';
+
+*{
+font-family: 'Nunito Sans';
+}
+
+.container {
+  display: block;
+  width: 1080px;
+}
+
+.wraper {
+  color: var(--primery-color);
+  background: #FFFFFF33;
+  width: 270px;
+  height: 52px
+}
+
+:root {
+  --primery-color: #ffff;
+  --inverse-color: black;
+  --secondary-color: #F2BE22;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.bold4 {
+  font-weight: 400;
+}
+
+.bold6 {
+  font-weight: 600;
+}
+.bold7 {
+  font-weight: 700;
+}
+.bold8 {
+  font-weight: 800;
+}

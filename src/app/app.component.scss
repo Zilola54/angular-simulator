@@ -1,0 +1,212 @@
+.header {
+  color: var(--primery-color);
+  background-color: rgba(24, 18, 30, 0.5);
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.container {
+  width: 1920px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 130px;
+
+  .logo-container {
+    width: 132px; ;
+    height: 22px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .logo-img {
+    width: 138px;
+    height: 28px;
+  }
+  .logo-text {
+    width: 132px;
+    height: 22px;
+    gap: 24px;
+    display: flex;
+    line-height: 100%;
+    letter-spacing: 40%;
+  }
+  .navigation-wrapper {
+    font-family: Nunito Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    width: 625px;
+    height: 25px;
+    gap: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .consultation {
+    color: var(--inverse-color);
+    width: 158px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+    align-items: center;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.main-title {
+    font-size: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 140%;
+  font-weight: 400;
+  color: #ffffff;
+  height: 150px;
+  width: 1080px;
+  text-align: left;
+  position: absolute;
+  top: 551px;
+  left: 50%;
+  transform: none;
+  margin-left: -590px;
+  z-index: 10;
+}
+.banner {
+    background-image: url('/images/background-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 985px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+  }
+
+.search-form {
+  background-position: center center;
+  color: var(--primery-color);
+  width: 1180px;
+  height: 161px;
+  position: absolute;
+  top: 742px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: #FFFFFF33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .search-container {
+    width: 1095px;
+    height: 81px;
+    border: 24px;
+    gap: 24px;
+    display: flex;
+    position: relative;
+
+    .location {
+      width: 270px;
+      height: 81px;
+      gap: 8px;
+      display: flex;
+      flex-direction: column;
+      .wraper {
+        padding-left: 10px;
+        background-color:FFFFFF33;
+        background: rgba(241, 237, 237, 0.05);
+        border: 1px solid rgba(232, 233, 239, 0.3); 
+        border-radius: 6px; 
+      }
+    }
+    .data {
+      color:  var(--primery-color);
+      width: 270px;
+      height: 81px;
+      gap: 8px;
+      display: inline-flex;
+      flex-direction: column;
+
+      .data-container {
+        color:  var(--primery-color);
+        width: 270px;
+        height: 81px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(241, 237, 237, 0.05);
+        border: 1px solid rgba(232, 233, 239, 0.3); 
+        border-radius: 6px;
+
+        .lodo-calendar {
+        width: 18px;
+        height: 18px;
+        margin-right: 15px;
+        }
+
+        .wraper {
+        width: 100%;
+        background: transparent !important;
+        border: none !important;
+        outline: none;
+        color: #fff;
+        font-size: 14px;
+        padding: 0;
+        pointer-events: none;
+        padding: 0 0 0 8px; 
+        }
+
+        ::placeholder {
+        color: var(--primery-color)
+        }
+      }
+    }
+
+    .participants {
+      width: 270px;
+      height: 81px;
+      gap: 8px;
+      display: flex;
+      flex-direction: column;
+      .wraper {
+        padding-left: 10px;
+        background-color: FFFFFF33;
+        background: rgba(241, 237, 237, 0.05); /* Легкий полупрозрачный фон */
+        border: 1px solid rgba(232, 233, 239, 0.3); 
+        border-radius: 6px; 
+      }
+    }
+
+    .search-btn {
+      background-color: #1A3E3E;
+      color: var(--primery-color);
+      width: 213px;
+      height: 52px;
+      border-radius: 4px;
+      gap: 10px;
+      padding-top: 16px;
+      padding-right: 36px;
+      padding-bottom: 16px;
+      padding-left: 36px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

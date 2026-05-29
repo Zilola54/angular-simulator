@@ -1,1 +1,74 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <div class="container">
+
+    <div class="logo-container">
+      <img src="images/mountain-icon.svg" alt="mountains" class="logo-img">
+      <span class="logo-text bold7">{{ companyName }}</span>
+    </div>
+
+    <div class="navigation-wrapper bold6 fs-18">
+      <span>Главная</span>
+      <span>Про гида</span>
+      <span>Программа тура</span>
+      <span>Стоимость</span>
+      <span>Блог</span>
+      <span>Контакты</span>
+    </div>
+
+    <button type="button" class="consultation bold6">Консультация</button>
+
+  </div>
+</header>
+
+<section class="banner">
+  <div class="main-content">
+
+    <h1 class="main-title">
+      Насладись прогулкой в горах<br> 
+      <span class="main-subtitle">с командой единомышлеников</span>
+    </h1>
+
+  </div>
+
+  <form action="" class="search-form">
+
+    <div class="search-container">
+
+      <div class="location">
+        
+        <select class="wraper">
+          <option value="">Локация для тура</option>
+          <option value="kilimanjaro">Килиманджаро</option>
+          <option value="goverla">Говерла</option>
+          <option value="monblan">Монблан</option>
+        </select>
+
+        <label>выберите из списка</label>
+      </div>
+      
+      <div class="data">
+        <div class="data-container">
+          <input type="text"placeholder="Дата тура" class="wraper">
+          <img src="images/calendar-icon.svg" alt="calendar" class="lodo-calendar">
+        </div>
+        <label>укажите дату</label>
+      </div>
+
+      <div class="participants">
+        
+        <select class="wraper">
+          <option value="">Участники</option>
+          <option value="beginners">новички</option>
+          <option value="new-thrills">опытные любители</option>
+          <option value="athletes">професионалы</option>
+        </select>
+        <label>выберите из списка</label>
+      </div>
+
+      <button type="submit" class="search-btn">Найти программу</button>
+
+    </div>
+
+  </form>
+
+</section>
