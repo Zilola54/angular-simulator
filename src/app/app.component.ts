@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Colors } from '../enums/Color';
+import { Collection } from './collection';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,6 @@ import { Colors } from '../enums/Color';
 })
 export class AppComponent {
   companyName: string = 'РУМТИБЕТ'; 
-
 
   constructor() {
     this.saveLastVisitDate();
@@ -34,8 +34,21 @@ export class AppComponent {
     } else {
       newCount = Number(currentVisits) + 1;
     }
-
     localStorage.setItem('visitCount', newCount.toLocaleString());
-
   }
 }
+
+
+const mountainCollection = new Collection<string>(['Килиманджаров','Говерла', 'Монблан']);
+
+console.log('все горы:', mountainCollection.getElements());
+
+mountainCollection.deleteThisElements(1);
+console.log('После удаления:', mountainCollection.getElements()); 
+
+const priceCollection = new Collection<number>([1200, 2500, 3100]);
+
+console.log('Все цены:', priceCollection.getElements()); 
+
+priceCollection.replaseThisElements(0, 1500);
+console.log('Обновленные цены:', priceCollection.getElements());
