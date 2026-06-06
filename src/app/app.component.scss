@@ -1,3 +1,43 @@
+.loader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #F3F5F4;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid transparent; 
+  border-top: 5px solid #18121E; 
+  border-bottom: 5px solid #18121E; 
+  border-radius: 50%; 
+  animation: spin 1s linear infinite; 
+}
+
+.loader-text {
+  font-family: sans-serif;
+  font-size: 18px;
+  color: #18121E;
+  margin: 0;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .header {
   color: var(--primery-color);
   background-color: rgba(24, 18, 30, 0.5);
@@ -70,7 +110,7 @@
 }
 
 .main-title {
-    font-size: 50px;
+  font-size: 50px;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   line-height: 140%;
@@ -86,6 +126,7 @@
   margin-left: -590px;
   z-index: 10;
 }
+
 .banner {
     background-image: url('/images/background-icon.svg');
     background-repeat: no-repeat;
@@ -93,7 +134,7 @@
     background-size: cover;
     width: 100%;
     height: 985px;
-    position: absolute;
+
     top: 0;
     left: 0;
     z-index: -2;
@@ -136,10 +177,11 @@
         border-radius: 6px; 
       }
       .wraper option {
-      background-color: #01352d; /* Зеленый фон для самих пунктов */
-      color: #ffffff;            /* Белый текст для пунктов */
+      background-color: #01352d;
+      color: #ffffff;
       }
     }
+
     .data {
       color:  var(--primery-color);
       width: 270px;
@@ -147,24 +189,22 @@
       gap: 8px;
       display: inline-flex;
       flex-direction: column;
-
       .data-container {
         color:  var(--primery-color);
         width: 270px;
-        height: 81px;
+        height: 52px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: rgba(241, 237, 237, 0.05);
         border: 1px solid rgba(232, 233, 239, 0.3); 
         border-radius: 6px;
-
+        position: relative;
         .lodo-calendar {
         width: 18px;
         height: 18px;
         margin-right: 15px;
         }
-
         .wraper {
         width: 100%;
         background: transparent !important;
@@ -172,10 +212,13 @@
         outline: none;
         color: #fff;
         font-size: 14px;
-        padding: 0;
-        
         padding: 0 0 0 8px; 
-        &::-webkit-calendar-picker-indicator {
+        font-family: inherit;
+        &::placeholder {
+          color: #fff;
+          opacity: 1;
+        }
+        &[type="date"]::-webkit-calendar-picker-indicator {
           position: absolute;
           top: 0;
           left: 0;
@@ -183,14 +226,14 @@
           height: 100%;
           margin: 0;
           padding: 0;
-          opacity: 0; /* Скрывает стандартную иконку браузера, делая её прозрачной */
+          opacity: 0;
           cursor: pointer;
-          z-index: 2
-          }
+          z-index: 2;
+        }
         }
         .wraper option {
-          background-color: #01352d; /* Зеленый фон для самих пунктов */
-          color: #ffffff;            /* Белый текст для пунктов */
+          background-color: #01352d;
+          color: #ffffff;
         }
         ::placeholder {
         color: var(--primery-color)
@@ -207,13 +250,13 @@
       .wraper {
         padding-left: 10px;
         background-color: #FFFFFF33;
-        background: rgba(241, 237, 237, 0.05); /* Легкий полупрозрачный фон */
+        background: rgba(241, 237, 237, 0.05);
         border: 1px solid rgba(232, 233, 239, 0.3); 
         border-radius: 6px; 
       }
       .wraper option {
-          background-color: #01352d; /* Зеленый фон для самих пунктов */
-          color: #ffffff;            /* Белый текст для пунктов */
+          background-color: #01352d;
+          color: #ffffff;
       }
     }
 
@@ -230,6 +273,256 @@
       padding-left: 36px;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &:hover:not(:disabled) {
+        background-color: #245757; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      &:disabled {
+        background-color: #1a3e3e;
+        color: rgba(255, 255, 255, 0.4);
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: none;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.about-our-trip {
+  display: block;
+  background-color: white;
+  position: relative;
+  width: 100%;
+  padding: 120px 0;
+  margin: 0 auto;
+
+  .about-our-trip-container {
+    max-width: 1180px; 
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+
+    .images-container {
+      width: 480px;
+      height: 526px;
+      position: relative;
+      img {
+        position: absolute;
+        border-radius: 32px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+      }
+      .images-box_img-first {
+        width: 350px;
+        height: 400px;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      .images-box__img-second {
+        width: 350px;
+        height: 400px;
+        top: 126px;
+        left: 130px;
+        z-index: 2;
+      }
+
+      .images-box__play-btn {
+        position: absolute;
+        top: 326px;
+        left: 305px;
+        transform: translate(-50%, -50%); 
+        background: none; 
+        padding: 0;
+        cursor: pointer;
+        z-index: 10; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+        &:hover {
+          transform: translate(-50%, -50%) scale(1.08); 
+        }
+
+        .btn-bg-circle  {
+          width: 50px;
+          height: 50px;
+          display: block;
+          filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.2));
+        }
+      }
+
+        .img-play-icon {
+          width: 13.73px;
+          height: 15.17px;
+          display: block;
+        }
+      }
+    }
+
+    .info-container {
+      width: 580px;
+      height: 398px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+
+      .about-title {
+        color: var(--secondary-color);
+        font-size: 24px; 
+        margin: 0;
+      }
+
+      .title {
+        color: var(--inverse-color);
+        font-size: 32px;
+        line-height: 120%;
+        margin: 0;
+      }
+
+      .description {
+        line-height: 140%;
+        color: #666666;
+        margin: 0;
+
+      }
+      .tour-program-btn {
+      background-color: #1A3E3E;
+      color: var(--primery-color);
+      width: 213px;
+      height: 52px;
+      border-radius: 4px;
+      gap: 10px;
+      padding-top: 16px;
+      padding-right: 36px;
+      padding-bottom: 16px;
+      padding-left: 36px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      }
+    }
+  }
+
+.offers {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  gap: 80px;  
+  background-color:#F3F5F4;
+  position: relative;
+  width: 100%;
+  
+  padding: 110px 0;
+  margin: 0 auto;
+
+  .box {
+    
+    max-width: 580px;
+    max-height: 591px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+    
+
+    .our-offers {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      
+      gap: 8px;
+
+    }
+
+    .offer-description {
+      width: 100%;
+      
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+   
+      .advantage-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      }
+      .advantage-icon {
+      width: 50px; 
+      height: 50px;
+      object-fit: contain;
+      flex-shrink: 0; 
+      }
+
+      .advantage-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      
+      h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      }
+
+       p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #333333;
+
+      }
+    }
+  }
+
+    .history {
+      max-width: 580px;
+      height: 81px;
+
+    }
+    .price-btn {
+      background-color: #1A3E3E;
+      color: var(--primery-color);
+      width: 213px;
+      height: 52px;
+      
+      border: none;
+      cursor: pointer;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+  }
+
+  .images-of-trip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 510px;
+    height: 510px;
+
+    .trip-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
+      cursor: pointer;
+    }
+    .trip-img:hover {
+      transform: scale(1.05); 
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
     }
   }
 }

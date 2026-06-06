@@ -3,6 +3,9 @@
 
 *{
 font-family: 'Nunito Sans';
+
+
+box-sizing: border-box;
 }
 
 .container {
@@ -16,6 +19,19 @@ font-family: 'Nunito Sans';
   width: 270px;
   height: 52px
 }
+
+.about-title {
+  color: var(--secondary-color);
+  font-size: 24px;
+}
+
+
+.title {
+  color: var(--inverse-color);
+  font-size: 32px;
+  line-height: 120%;
+  margin: 0;
+  }
 
 :root {
   --primery-color: #ffff;
