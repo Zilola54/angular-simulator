@@ -1,5 +1,5 @@
 import './training';
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Colors } from '../enums/Color';
 import { Collection } from './collection';
 import { IAdvantages } from '../interfaces/IAdvantages'; 
@@ -45,8 +45,8 @@ export class AppComponent {
 
   public isDateActive: boolean = true;
 
-  public timerId: any;
-
+  private timerId: any;
+  
   public currentDate: Date = new Date();
 
   public counter: number = 0;
@@ -79,7 +79,7 @@ export class AppComponent {
     } else {
       newCount = Number(currentVisits) + 1;
     }
-    localStorage.setItem('visitCount', newCount.toLocaleString());
+    localStorage.setItem('visitCount', String(newCount));
   }
 
   public startTimer() {
