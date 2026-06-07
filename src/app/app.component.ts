@@ -2,30 +2,74 @@ import './training';
 import { Component } from '@angular/core';
 import { Colors } from '../enums/Color';
 import { Collection } from './collection';
+import { IAdvantages } from '../interfaces/IAdvantages'; 
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule, DatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  companyName: string = 'РУМТИБЕТ'; 
+
+  public companyName: string = 'РУМТИБЕТ'; 
+
+  public advantages: IAdvantages[] = [
+      {
+        id: 1,
+        title: 'Опытный гид',
+        icon: 'images/guide-icon.svg',
+        description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      },
+          {
+        id: 2,
+        title: 'Безопасный поход',
+        icon: 'images/safety-icon.svg',
+        description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      },
+          {
+        id: 3,
+        title: 'Лояльные цены',
+        icon: 'images/price-icon.svg',
+        description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      },
+    ];
+
+  public selectedLocation: string = '';
+
+  public selectedDate: string = '';
+
+  public selectedParticipants: string = '';
+
+  public isDateActive: boolean = true;
+
+  private timerId: any;
+  
+  public currentDate: Date = new Date();
+
+  public counter: number = 0;
+
+  public isLoading: boolean = true;
+
+  public inputValue: string = '';
+  
 
   constructor() {
     this.saveLastVisitDate();
     this.updateVisitCount();
   } 
 
-  checkColor(RGB: Colors): boolean {
+  public checkColor(RGB: Colors): boolean {
     return RGB === Colors.GREEN || RGB === Colors.RED || RGB === Colors.BLUE;
   }
  
-  saveLastVisitDate() {
+  public saveLastVisitDate() {
     localStorage.setItem('lastVisit', new Date().toLocaleString());
   }
 
-  updateVisitCount() {
+  public updateVisitCount() {
     
     let currentVisits = localStorage.getItem('visitCount');
     let newCount = 0;
@@ -35,10 +79,37 @@ export class AppComponent {
     } else {
       newCount = Number(currentVisits) + 1;
     }
-    localStorage.setItem('visitCount', newCount.toLocaleString());
+    localStorage.setItem('visitCount', String(newCount));
+  }
+
+  public startTimer() {
+  this.timerId = setInterval(() => {
+    this.currentDate = new Date();
+    }, 1000);
+  }
+
+  public toggleWidget() {
+    this.isDateActive = !this.isDateActive;
+
+    if (this.isDateActive) {
+    this.startTimer();
+    } else {
+    clearInterval(this.timerId);
+    }
+  }
+
+  ngOnInit() {
+    this.startTimer();
+
+    setTimeout(  () => {
+      this.isLoading = false;
+    }, 2000);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.timerId);
   }
 }
-
 
 const mountainCollection = new Collection<string>(['Килиманджаров','Говерла', 'Монблан']);
 
