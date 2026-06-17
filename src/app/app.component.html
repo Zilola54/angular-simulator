@@ -169,6 +169,73 @@
 
   </section>
 
+  <section class="popular-destinations">
+    <div class="title-container">
+      <span class="subtitle fs-24 bold4">по версии отдыхающих</span>
+      <p class="title-destination fs-32 bold8">Популярные направления</p>
+    </div>
+
+    <div class="container-witn-trip">
+
+
+      @for (voucher of vouchers; track voucher.title) {
+        <div class="voucher">
+          <img [src]="'/images/vouchers/' + voucher.photo + '.svg'" alt="">
+          
+          <div class="rating">
+            <img [src]="'/images/vouchers/'+  voucher.ratingPhoto + '.svg'" alt="рейтинг">
+            <p class="fs-14 bold7">{{ voucher.rating }}</p>
+          </div>
+
+          <div class="background">
+            <img [src]="'/images/vouchers/' + voucher.descriptionBackground + '.svg'" alt="">
+          </div>
+          
+          <div class="title-voucher">
+            <div class="title-container">
+              <p class="fs-24 bold7 margin0">{{ voucher.title }}</p>
+              <p class="fs-14 bold4 margin0">{{ voucher.subtitle }}</p>
+            </div>
+            
+            <div class="price-container">
+              <p class="price-voucher">{{ voucher.price + '$' }}</p>
+            </div>
+          </div>
+          
+        </div>
+      }
+      
+    </div>
+    <button type="submit" class="rating-trip-btn">Рейтинг направлений</button>
+  </section>
+
+
+  <section class="blog-about-travel">
+
+    <div class="title-container">
+      <span class="subtitle fs-24 bold4">делимся впечатлениями</span>
+      <p class="title-destination fs-32 bold8">Блог о путешествиях</p>
+    </div>
+
+    <div class="articles">
+
+    </div>
+
+    <button type="submit" class="other-materials">Рейтинг направлений</button>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
     <input [(ngModel)]="inputValue" name="liveInput" class="my-input-style">
     <p>{{inputValue}}</p>
 

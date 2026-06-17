@@ -5,6 +5,7 @@ import { Collection } from './collection';
 import { IAdvantages } from '../interfaces/IAdvantages'; 
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { IVouchers } from '../interfaces/IVouchers';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,36 @@ export class AppComponent {
         title: 'Лояльные цены',
         icon: 'images/price-icon.svg',
         description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+      },
+    ];
+
+    public vouchers: IVouchers[] = [
+      {
+        title: 'Озеро возле гор',
+        subtitle: 'романтическое приключение',
+        price: 480,
+        rating: 4.9,
+        photo: 'mountain-lakes-icon',
+        descriptionBackground: 'descriptionBackground-icon',
+        ratingPhoto: 'star-icon',
+      },
+      {
+        title: 'Ночь в горах',
+        subtitle: 'в компании друзей',
+        price: 480,
+        rating: 4.5,
+        photo: 'night-mountains-icon',
+        descriptionBackground:'descriptionBackground-icon',
+        ratingPhoto: 'star-icon',
+      },
+      {
+        title: 'Растяжка в горах',
+        subtitle: 'для тех, кто заботится о себе',
+        price: 230,
+        rating: 5.0,
+        photo: 'mountain-yoga-icon',
+        descriptionBackground: 'descriptionBackground-icon',
+        ratingPhoto: 'star-icon',
       },
     ];
 
