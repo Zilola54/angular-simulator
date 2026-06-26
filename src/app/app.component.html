@@ -125,7 +125,10 @@
         <span class="description bold4 fs-18">
           Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.
         </span>
-        <button type="submit" class="tour-program-btn">Программа тура</button>
+        <button 
+          type="button" 
+          class="tour-program-btn"
+          (click)="triggerMessage('Успех', 'SUCCESS', 'Направления получены')" >Программа тура</button>
       </div>
 
     </div>
@@ -157,7 +160,10 @@
           }
 
         </div>
-        <button type="submit" class="price-btn">Стоимость программы</button>
+        <button 
+          type="button" 
+          class="price-btn"
+          (click)="triggerMessage('Информация', 'INFO', 'Стоимость отправлена на почту' )">Стоимость программы</button>
       </div>
 
       <div class="images-of-trip">
@@ -169,7 +175,114 @@
 
   </section>
 
+  <section class="popular-destinations">
+    <div class="title-container">
+      <span class="subtitle fs-24 bold4">по версии отдыхающих</span>
+      <p class="title-destination fs-32 bold8">Популярные направления</p>
+    </div>
+
+    <div class="container-witn-trip">
+
+
+      @for (voucher of vouchers; track voucher.title) {
+        <div class="voucher">
+          <img [src]="'/images/vouchers/' + voucher.photo + '.svg'" alt="">
+          
+          <div class="rating">
+            <img [src]="'/images/vouchers/'+  voucher.ratingPhoto + '.svg'" alt="рейтинг">
+            <p class="fs-14 bold7">{{ voucher.rating }}</p>
+          </div>
+
+          <div class="background">
+            <img [src]="'/images/vouchers/' + voucher.descriptionBackground + '.svg'" alt="">
+          </div>
+          
+          <div class="title-voucher">
+            <div class="title-container">
+              <p class="fs-24 bold7 margin0">{{ voucher.title }}</p>
+              <p class="fs-14 bold4 margin0">{{ voucher.subtitle }}</p>
+            </div>
+            
+            <div class="price-container">
+              <p class="price-voucher">{{ voucher.price + '$' }}</p>
+            </div>
+          </div>
+          
+        </div>
+      }
+      
+    </div>
+    <button 
+      type="button" 
+      class="rating-trip-btn"
+      (click)="triggerMessage('Внимание', 'WARN', 'Проограмма недоступна')">Рейтинг направлений</button>
+  </section>
+
+  <section class="blog-about-travel">
+
+    <div class="title-container">
+      <span class="subtitle fs-24 bold4">делимся впечатлениями</span>
+      <p class="title-destination fs-32 bold8">Блог о путешествиях</p>
+    </div>
+
+    <div class="articles">
+
+      @for (article of articles; track article.title) {
+        <div class="article">
+
+          <img [src]="'/images/articles/' + article.icon + '.svg'" alt="">
+          <div class="article-container">
+            <div class="fs-24 bold7 title-of-article">{{ article.title }}</div>
+            <div class="fs-14 bold4">{{ article.description }}</div>
+            <div class="read bold7">
+              <p class="colorsecond">{{ article.date }}</p>
+              <p>{{ article.btnOfRead }}</p>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+
+    <button 
+      type="button" 
+      class="other-materials"
+      (click)="triggerMessage('Ошибка', 'ERROR','Материалы недоступны')">Рейтинг направлений</button>
+
+  </section>
+
+
+
+
+  <div class="message-container">
+    @for (message of appMessages; track message.id) {
+      <ng-container 
+        [ngTemplateOutlet]="messageItem" 
+        [ngTemplateOutletContext]="{ $implicit: message }">
+      </ng-container>
+    }
+  </div>
+
+}
+
+
     <input [(ngModel)]="inputValue" name="liveInput" class="my-input-style">
     <p>{{inputValue}}</p>
 
-}
+
+
+<ng-template #messageItem let-msg>
+  <div class="message">
+    <div class="photoMessage">
+      <img [src]="'/images/message/' + msg.photo + '.svg' " alt="">
+    </div>
+    <div class="message-wrapper">
+      <span class="messege-text fs-16 bold7">{{ msg.text }}</span>
+      <span class="message-desc fs-14 bold4">{{ msg.desc }}</span>
+    </div>
+    <div class="closeMessage">
+      <img [src]="'/images/message/' + msg.icon + '.svg'"  (click)="closeToast(msg.id)" alt="">
+    </div>
+  </div>
+  
+</ng-template>

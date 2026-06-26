@@ -38,13 +38,26 @@ box-sizing: border-box;
   --inverse-color: black;
   --secondary-color: #F2BE22;
 }
-
+.colorsecond {
+  color: #F2BE22;
+}
+.fs-14 {
+  font-size: 14px;
+}
 .fs-16 {
   font-size: 16px;
 }
 
 .fs-18 {
   font-size: 18px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-32 {
+  font-size: 32px;
 }
 
 .bold4 {
@@ -59,4 +72,7 @@ box-sizing: border-box;
 }
 .bold8 {
   font-weight: 800;
+}
+.margin0 {
+  margin: 0;
 }
