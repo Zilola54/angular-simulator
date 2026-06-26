@@ -16,10 +16,12 @@ export class MessageService {
     return this._messages;
   }
 
+  private _nextId = 1;
+
   public addMessage(text: string, type: MessageType, desc: string): void {
 
 
-    const newId = this._messages.length + 1;
+    const newId = this._nextId++;
   
     const newMsg: IMessages = {
       id: newId,
@@ -33,7 +35,7 @@ export class MessageService {
 
     setTimeout(() => {
       this.closeMessage(newId);
-    }, 500000000);
+    }, 5000);
 
   }
   
