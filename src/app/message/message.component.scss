@@ -1,0 +1,84 @@
+/* Фиксируем контейнер строго под вашим хедера (высота 120px + 20px отступ) */
+.message-container {
+  position: fixed;
+  top: 140px; 
+  right: 40px;
+  z-index: 10000;
+  display: flex;
+  
+  /* Разворачиваем отображение: конец массива визуально рендерится НАВЕРХУ */
+  flex-direction: column-reverse; 
+  gap: 12px;
+  max-width: 350px;
+  width: 100%;
+}
+
+/* Стили самой плашки сообщения */
+.message {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 6px;
+  background-color:rgba(15, 23, 42, 0.85);
+
+  box-shadow: 0px 4px 20px rgba(248, 245, 250, 0.15);
+  
+  
+  /* Эластичная анимация: тост падает сверху и плавно проявляется */
+  animation: toastEnter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+}
+
+.messege-text {
+  color:  rgba(232, 233, 235, 1);
+
+}
+
+.message-desc {
+  color:rgba(232, 233, 235, 1);
+}
+
+.photoMessage img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.closeMessage img {
+  display: block;
+  
+  width: 20px;
+  height: 20px;
+}
+
+.closeMessage {
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s;
+  opacity: 0.7;
+  position: relative;
+  top: -20px; 
+  right: -10px;
+  
+  &:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Идеальная анимация появления сверху со сдвигом */
+@keyframes toastEnter {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

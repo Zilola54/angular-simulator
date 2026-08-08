@@ -1,0 +1,237 @@
+<div>
+  <section class="banner">
+    <div class="main-content">
+
+      <h1 class="main-title">
+        Насладись прогулкой в горах<br> 
+        <span class="main-subtitle">с командой единомышлеников</span>
+      </h1>
+
+    </div>
+
+    <form action="" class="search-form">
+
+      <div class="search-container">
+
+        <div class="location">
+          
+          <select [(ngModel)]="selectedLocation" class="wraper" name="location">
+            <option value=""selected hidden disabled>Локация для тура</option>
+            <option value="kilimanjaro">Килиманджаро</option>
+            <option value="goverla">Говерла</option>
+            <option value="monblan">Монблан</option>
+          </select>
+
+          <label>выберите из списка</label>
+        </div>
+        
+        <div class="data">
+          <div class="data-container">
+            <input 
+            #dateInput
+            [(ngModel)]="selectedDate" 
+            type="text" 
+            placeholder="Дата похода"  
+            class="wraper" 
+            name="date"
+            required
+            (focus)="dateInput.type = 'date'"
+            (blur)="dateInput.value ? null : dateInput.type = 'text'"
+            (click)="dateInput.type = 'date'">
+            <img src="images/calendar-icon.svg" alt="calendar" class="lodo-calendar">
+          </div>
+          <label>укажите дату</label>
+        </div>
+
+        <div class="participants">
+          
+          <select [(ngModel)]="selectedParticipants" class="wraper" name="participants">
+            <option value="" selected hidden disabled>Участники</option>
+            <option value="beginners">новички</option>
+            <option value="new-thrills">опытные любители</option>
+            <option value="athletes">професионалы</option>
+          </select>
+          <label>выберите из списка</label>
+        </div>
+
+        <button type="submit" [disabled]="!selectedLocation || !selectedDate || !selectedParticipants" class="search-btn">Найти программу</button>
+
+      </div>
+
+    </form>
+
+  </section>
+
+  <section class="about-our-trip">
+    <div class="about-our-trip-container">
+
+      <div class="images-container">
+        <img src="images/mountain-two-slade-icon.svg" alt="Горы" class="images-box_img-first">
+        <img src="images/house-icon.svg" alt="Домик" class="images-box__img-second">
+        <button class="images-box__play-btn" aria-label="Смотреть видео">
+          <img src="images/play-icon.svg" alt="Фон кнопки" class="btn-bg-circle">
+          <img src="images/triangle-icon.svg" alt="Треугольник запуска" class="img-play-icon">
+        </button>
+
+      </div>
+      
+      <div class="info-container">
+        <span class="about-title bold4">о нашем походе</span>
+        <h2 class="title bold8">Исследуйте все горные массивы мира вместе с нами</h2>
+        <span class="description bold4 fs-18">
+          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.
+        </span>
+        <button 
+          type="button" 
+          class="tour-program-btn"
+          (click)="triggerMessage('Успех', 'SUCCESS', 'Направления получены')" >Программа тура</button>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="offers">
+    
+      <div class="box">
+        <div class="our-offers about-title bold4 ">наше предложение
+          <div class="title bold8">Лучшие программы для тебя</div>
+        </div>
+
+        <div class="history bold4 fs-18">
+          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+        </div>
+
+        <div class="offer-description">
+          @for (advantage of advantages; track advantage.id) {
+            <div class="advantage-item">
+
+              <img [src]="advantage.icon" class="advantage-icon" alt="">
+
+              <div class="advantage-content">
+                <h3 class="fs-18 bold7">{{ advantage.title }}</h3>
+                <p class="fs-14 bold4">{{ advantage.description }}</p>
+            </div>
+
+              </div>
+          }
+
+        </div>
+        <button 
+          type="button" 
+          class="price-btn"
+          (click)="triggerMessage('Информация', 'INFO', 'Стоимость отправлена на почту' )">Стоимость программы</button>
+      </div>
+
+      <div class="images-of-trip">
+        <img src="images/beach-icon.svg" class="trip-img" alt="">
+        <img src="images/canyon-icon.svg" class="trip-img" alt="">
+        <img src="images/winter-mountain.svg" class="trip-img" alt="">
+        <img src="images/mountain-rivers-icon.svg" class="trip-img" alt="">
+      </div>
+
+  </section>
+
+  <section class="popular-destinations">
+    <div class="title-container">
+      <span class="subtitle fs-24 bold4">по версии отдыхающих</span>
+      <p class="title-destination fs-32 bold8">Популярные направления</p>
+    </div>
+
+    <div class="container-witn-trip">
+
+
+      @for (voucher of vouchers; track voucher.title) {
+        <div class="voucher">
+          <img [src]="'/images/vouchers/' + voucher.photo + '.svg'" alt="">
+          
+          <div class="rating">
+            <img [src]="'/images/vouchers/'+  voucher.ratingPhoto + '.svg'" alt="рейтинг">
+            <p class="fs-14 bold7">{{ voucher.rating }}</p>
+          </div>
+
+          <div class="background">
+            <img [src]="'/images/vouchers/' + voucher.descriptionBackground + '.svg'" alt="">
+          </div>
+          
+          <div class="title-voucher">
+            <div class="title-container">
+              <p class="fs-24 bold7 margin0">{{ voucher.title }}</p>
+              <p class="fs-14 bold4 margin0">{{ voucher.subtitle }}</p>
+            </div>
+            
+            <div class="price-container">
+              <p class="price-voucher">{{ voucher.price + '$' }}</p>
+            </div>
+          </div>
+          
+        </div>
+      }
+      
+    </div>
+    <button 
+      type="button" 
+      class="rating-trip-btn"
+      (click)="triggerMessage('Внимание', 'WARN', 'Проограмма недоступна')">Рейтинг направлений</button>
+  </section>
+
+  <section class="blog-about-travel">
+
+    <div class="title-container">
+      <span class="subtitle fs-24 bold4">делимся впечатлениями</span>
+      <p class="title-destination fs-32 bold8">Блог о путешествиях</p>
+    </div>
+
+    <div class="articles">
+
+      @for (article of articles; track article.title) {
+        <div class="article">
+
+          <img [src]="'/images/articles/' + article.icon + '.svg'" alt="">
+          <div class="article-container">
+            <div class="fs-24 bold7 title-of-article">{{ article.title }}</div>
+            <div class="fs-14 bold4">{{ article.description }}</div>
+            <div class="read bold7">
+              <p class="colorsecond">{{ article.date }}</p>
+              <p>{{ article.btnOfRead }}</p>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+
+    <button 
+      type="button" 
+      class="other-materials"
+      (click)="triggerMessage('Ошибка', 'ERROR','Материалы недоступны')">Рейтинг направлений</button>
+
+  </section>
+
+  <section class="impressions">
+    <div class="title-container">
+      <span class="subtitle fs-24 bold4">фото-отчет</span>
+      <p class="title-destination fs-32 bold8">Делимся впечатлениями</p>
+    </div>
+
+    <div class="photo-report">
+
+      @for (photo of photos; track photo.id) {
+        <div> 
+          <img [src]=" 'images/photo/' +  photo.photo + '.svg' " alt="">
+        </div>
+      }
+
+
+
+    </div>
+
+    <button 
+      type="button" 
+      class="pinterest"
+      >Наш Pinterest
+    </button>
+
+
+  </section>
+
+</div>

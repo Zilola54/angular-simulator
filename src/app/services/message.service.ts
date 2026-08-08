@@ -18,7 +18,7 @@ export class MessageService {
 
   private _nextId = 1;
 
-  public addMessage(text: string, type: MessageType, desc: string): void {
+  private addMessage(text: string, type: MessageType, desc: string): void {
 
 
     const newId = this._nextId++;
@@ -42,6 +42,20 @@ export class MessageService {
   public closeMessage(id: number): void {
     
     this._messages = this._messages.filter(msg => msg.id !== id);
+  }
+   public showSuccess(text: string, desc: string) {
+    this.addMessage(text, MessageType.SUCCESS, desc)
+  }
+  public showInfo(text: string, desc: string) {
+    this.addMessage(text, MessageType.INFO, desc )
+  }
+
+  public showWarn(text: string, desc: string) {
+    this.addMessage(text, MessageType.WARN,desc)
+  }
+  public showError(text: string, desc: string) {
+    this.addMessage(text, MessageType.ERROR,desc)
+
   }
 }
 
