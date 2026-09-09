@@ -1,0 +1,41 @@
+
+  <header class="header">
+    <div class="container">
+
+      <div class="logo-container">
+        <img src="images/mountain-icon.svg" alt="mountains" class="logo-img">
+        <span class="logo-text bold7">{{ companyName }}</span>
+      </div>
+
+      <div class="navigation-wrapper bold6 fs-18 ">
+        @for (menuItem of menuItems; track menuItem.title) {
+          <a class="navigation-wrapper" [routerLink]="menuItem.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: menuItem.isExact }">{{ menuItem.title }}</a>
+        }
+        
+
+      </div>
+
+
+
+      <button type="button" (click)="toggleWidget()" class="consultation bold6">
+        {{ isDateActive ? 'Показать дату' : 'Показать кликер' }}
+      </button>
+      @if (isDateActive) {
+        <span class="timer-widget">{{ currentDate | date: 'medium' }}</span>
+      } @else {
+        <div class="counter-widget">
+          <button type="button" (click)="counter = counter - 1" [disabled]="counter === 0"> - </button> 
+          
+          <span>{{ counter }}</span> 
+          
+          <button type="button" (click)="counter = counter + 1"> + </button> 
+        </div>
+      }
+      <button type="button" class="consultation bold6">Консультация</button>
+
+    </div>
+  </header>
+
+
+
+

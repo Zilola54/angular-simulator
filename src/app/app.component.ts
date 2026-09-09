@@ -1,115 +1,34 @@
-import './training';
+
+import {RouterOutlet} from '@angular/router';
+import { HeaderComponent } from './header/header.component'; // путь может немного отличаться в зависимости от вашей структуры папок
+import { FooterComponent } from './footer/footer.component';
+
 import { Component } from '@angular/core';
 import { Colors } from '../enums/Color';
 import { Collection } from './collection';
-import { IAdvantages } from '../interfaces/IAdvantages'; 
+ 
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { IVouchers } from '../interfaces/IVouchers';
-import { IArticles } from '../interfaces/IArticles';
+
 import { MessageType } from '../enums/Messege';
 import { MessageService } from './services/message.service';
 import { StorageService } from './services/StorageService'; 
 import { CommonModule } from '@angular/common'; 
+import { MessageComponent } from './message/message.component';
+
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, DatePipe, CommonModule],
+  imports: [FormsModule, CommonModule, RouterOutlet, HeaderComponent, FooterComponent, MessageComponent],
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
 
-  public companyName: string = 'РУМТИБЕТ'; 
 
-  public advantages: IAdvantages[] = [
-    {
-      id: 1,
-      title: 'Опытный гид',
-      icon: 'images/guide-icon.svg',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
-    },
-        {
-      id: 2,
-      title: 'Безопасный поход',
-      icon: 'images/safety-icon.svg',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
-    },
-        {
-      id: 3,
-      title: 'Лояльные цены',
-      icon: 'images/price-icon.svg',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
-    },
-  ];
-
-  public vouchers: IVouchers[] = [
-    {
-      title: 'Озеро возле гор',
-      subtitle: 'романтическое приключение',
-      price: 480,
-      rating: 4.9,
-      photo: 'mountain-lakes-icon',
-      descriptionBackground: 'descriptionBackground-icon',
-      ratingPhoto: 'star-icon',
-    },
-    {
-      title: 'Ночь в горах',
-      subtitle: 'в компании друзей',
-      price: 480,
-      rating: 4.5,
-      photo: 'night-mountains-icon',
-      descriptionBackground:'descriptionBackground-icon',
-      ratingPhoto: 'star-icon',
-    },
-    {
-      title: 'Растяжка в горах',
-      subtitle: 'для тех, кто заботится о себе',
-      price: 230,
-      rating: 5.0,
-      photo: 'mountain-yoga-icon',
-      descriptionBackground: 'descriptionBackground-icon',
-      ratingPhoto: 'star-icon',
-    },
-  ];
-
-  public articles: IArticles[] = [
-    {
-      icon: 'italia-icon',
-      title: 'Красивая Италия, какая она в реальности ?',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      date: '01/04/2023',
-      btnOfRead: 'читать статью',
-    },
-    {
-      icon: 'airplane-icon',
-      title: 'Долой сомнения! Весь мир открыт для вас!',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
-      date: '01/04/2023',
-      btnOfRead:'читать статью',
-    },
-    {
-      icon: 'street-icon',
-      title: 'Как подготовиться к путешествию в одиночку?',
-      description: 'Для современного мира базовый вектор развития предполагает.',
-      date: '01/04/2023',
-      btnOfRead:'читать статью',
-    },
-    {
-      icon: 'india-icon',
-      title: 'Индия ... летим?',
-      description: 'Для современного мира базовый.',
-      date: '01/04/2023',
-      btnOfRead:'читать статью',
-    },
-  ]
-
-  public selectedLocation: string = '';
-
-  public selectedDate: string = '';
-
-  public selectedParticipants: string = '';
+public companyName: string = 'РУМТИБЕТ';
 
   public isDateActive: boolean = true;
 
@@ -123,15 +42,9 @@ export class AppComponent {
 
   public inputValue: string = '';
 
-  public get appMessages() {
-    return this.messageService.messages;
-  }
   
-  public closeToast(id: number) {
-  this.messageService.closeMessage(id);
-}
 
-  constructor(private messageService: MessageService, private storageService: StorageService) {
+  constructor(private storageService: StorageService) {
     this.saveLastVisitDate();
     this.updateVisitCount();
   } 
@@ -173,10 +86,7 @@ export class AppComponent {
     }
   }
 
-  public triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string) {
-    const type = MessageType[typeString];
-  this.messageService.addMessage(text, type, desc);
-  }
+  
 
   ngOnInit() {
     this.startTimer();

@@ -1,0 +1,24 @@
+<div class="message-container">
+    @for (message of appMessages; track message.id) {
+      <ng-container 
+        [ngTemplateOutlet]="messageItem" 
+        [ngTemplateOutletContext]="{ $implicit: message }">
+      </ng-container>
+    }
+</div>
+  
+<ng-template #messageItem let-msg>
+  <div class="message">
+    <div class="photoMessage">
+      <img [src]="'/images/message/' + msg.photo + '.svg' " alt="">
+    </div>
+    <div class="message-wrapper">
+      <span class="messege-text fs-16 bold7">{{ msg.text }}</span>
+      <span class="message-desc fs-14 bold4">{{ msg.desc }}</span>
+    </div>
+    <div class="closeMessage">
+      <img [src]="'/images/message/' + msg.icon + '.svg'"  (click)="closeToast(msg.id)" alt="">
+    </div>
+  </div>
+  
+</ng-template>
