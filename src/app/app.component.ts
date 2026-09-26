@@ -2,24 +2,22 @@
 import {RouterOutlet} from '@angular/router';
 import { HeaderComponent } from './header/header.component'; // путь может немного отличаться в зависимости от вашей структуры папок
 import { FooterComponent } from './footer/footer.component';
-
+import { LoaderComponent } from './loader/loader.component';
 import { Component } from '@angular/core';
 import { Colors } from '../enums/Color';
 import { Collection } from './collection';
  
 import { FormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 
-import { MessageType } from '../enums/Messege';
-import { MessageService } from './services/message.service';
 import { StorageService } from './services/StorageService'; 
 import { CommonModule } from '@angular/common'; 
 import { MessageComponent } from './message/message.component';
 
 
+
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, CommonModule, RouterOutlet, HeaderComponent, FooterComponent, MessageComponent],
+  imports: [FormsModule, CommonModule, RouterOutlet, HeaderComponent, FooterComponent, MessageComponent, LoaderComponent],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

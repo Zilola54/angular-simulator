@@ -1,1 +1,62 @@
+<div class="users-container">
+  @for (user of (users$ | async); track user.id) {
+    <div class="user-card">
+      
+      <!-- Шапка карточки -->
+      <div class="card-header">
+        <h2>{{ user.name }}</h2>
+        <span class="username">@{{ user.username }}</span>
+      </div>
 
+      <!-- Блок КОНТАКТЫ -->
+      <div class="card-section">
+        <h3>КОНТАКТЫ</h3>
+        <div class="card-row">
+          <span class="row-label">Эл. почта:</span>
+          <span class="row-value value-link">{{ user.email }}</span>
+        </div>
+        <div class="card-row">
+          <span class="row-label">Телефон:</span>
+          <span class="row-value">{{ user.phone }}</span>
+        </div>
+        <div class="card-row">
+          <span class="row-label">Веб-сайт:</span>
+          <span class="row-value value-link">{{ user.website }}</span>
+        </div>
+      </div>
+
+      <!-- Блок АДРЕС ПРОЖИВАНИЯ (вымышленные демо-данные из твоего бэкенда) -->
+      <div class="card-section">
+        <h3>АДРЕС ПРОЖИВАНИЯ</h3>
+        <div class="card-row">
+          <span class="row-label">Город:</span>
+          <span class="row-value">Toronto</span>
+        </div>
+        <div class="card-row">
+          <span class="row-label">Улица:</span>
+          <span class="row-value">Bay Street 250</span>
+        </div>
+        <div class="card-row">
+          <span class="row-label">Индекс:</span>
+          <span class="row-value">M5H2N2</span>
+        </div>
+      </div>
+
+      <!-- Блок МЕСТО РАБОТЫ (демо-данные) -->
+      <div class="card-section">
+        <h3>МЕСТО РАБОТЫ</h3>
+        <div class="card-row">
+          <span class="row-label">Компания:</span>
+          <span class="row-value">Borealis Systems</span>
+        </div>
+        <div class="card-row">
+          <span class="row-label">Специализация:</span>
+          <span class="row-value align-right">scale-up vertical content-delivery</span>
+        </div>
+      </div>
+
+    </div>
+  } @empty {
+    <p class="no-users">НЕТ ПОЛЬЗОВАТЕЛЕЙ ДЛЯ ИЗОБРАЖЕНИЯ</p>
+  }
+</div>
