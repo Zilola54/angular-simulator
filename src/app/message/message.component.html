@@ -1,5 +1,5 @@
 <div class="message-container">
-    @for (message of appMessages; track message.id) {
+    @for (message of messages$ | async; track message.id) {
       <ng-container 
         [ngTemplateOutlet]="messageItem" 
         [ngTemplateOutletContext]="{ $implicit: message }">

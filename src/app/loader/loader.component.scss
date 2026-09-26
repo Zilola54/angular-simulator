@@ -1,0 +1,28 @@
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(39, 37, 37, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+
+  .spinner {
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border: 5px solid rgba(0, 0, 0, 0.1); 
+  border-top: 5px solid #151118; 
+  border-bottom: 5px solid #130f16; 
+  border-radius: 50%; 
+  animation: loader-rotate 1s linear infinite; 
+  }
+  @keyframes loader-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+}
