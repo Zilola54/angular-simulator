@@ -21,8 +21,8 @@
   animation: loader-rotate 1s linear infinite; 
   }
   @keyframes loader-rotate {
-  to {
-    transform: rotate(360deg);
+    to {
+      transform: rotate(360deg);
+    }
   }
-}
 }

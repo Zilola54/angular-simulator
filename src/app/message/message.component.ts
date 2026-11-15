@@ -14,13 +14,11 @@ import { MessageService } from '../../app/services/message.service';
 export class MessageComponent {
 
   public messages$!: Observable<IMessages[]>;
-
-
-
   public closeToast(id: number) {
   this.messageService.closeMessage(id);
   }
- constructor(private messageService: MessageService) {}
+ 
+  constructor(private messageService: MessageService) {}
  
   ngOnInit(): void {
     this.messages$ = this.messageService.messages$;

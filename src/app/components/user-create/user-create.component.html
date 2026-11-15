@@ -1,0 +1,242 @@
+<div class="create-user-container">
+  <h3>Создать нового пользователя</h3>
+  
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+    
+    <!-- 👤 Основные поля -->
+    <div class="form-group">
+      <label for="create-name">Имя *</label>
+      <input id="create-name" type="text" formControlName="name">
+      @if (userForm.get('name')?.touched && userForm.get('name')?.invalid) {
+        <div class="error">
+          @if (userForm.get('name')?.hasError('required')) {
+            <small >Поле обязательно для заполнения.</small>
+          }
+          @if (userForm.get('name')?.hasError('minlength')) {
+            <small >Минимум 2 символа.</small>
+          }
+          @if (userForm.get('name')?.hasError('maxlength')) {
+            <small >Максимум 100 символов.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="create-username">Никнейм *</label>
+      <input id="create-username" type="text" formControlName="username">
+
+      @if (userForm.get('username')?.touched && userForm.get('username')?.invalid) {
+        <div class="error">
+          @if (userForm.get('username')?.hasError('required')) {
+            <small >Поле обязательно для заполнения.</small>
+          }
+          @if (userForm.get('username')?.hasError('minlength')) {
+            <small >Минимум 3 символа.</small>
+          }
+          @if (userForm.get('username')?.hasError('maxlength')) {
+            <small >Максимум 30 символов.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="create-email">Email *</label>
+      <input id="create-email" type="email" formControlName="email">
+
+      @if (userForm.get('email')?.touched && userForm.get('email')?.invalid) {
+        <div class="error">
+          @if (userForm.get('email')?.hasError('required')) {
+            <small >Поле обязательно для заполнения.</small>
+          }
+          @if (userForm.get('email')?.hasError('email')) {
+            <small>Некорректный формат email.</small>
+          }
+          @if (userForm.get('email')?.hasError('maxlength')) {
+            <small >Максимум 100 символов.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="create-phone">Телефон *</label>
+      <input id="create-phone" type="text" formControlName="phone">
+
+      @if (userForm.get('phone')?.touched && userForm.get('phone')?.invalid) {
+        <div class="error">
+          @if (userForm.get('phone')?.hasError('required')) {
+            <small >Поле обязательно для заполнения.</small>
+          }
+          @if (userForm.get('phone')?.hasError('minlength')) {
+            <small >Минимум 10 символа.</small>
+          }
+          @if (userForm.get('phone')?.hasError('maxlength')) {
+            <small >Максимум 25 символов.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="create-website">Веб-сайт</label>
+      <input id="create-website" type="text" formControlName="website">
+
+      @if (userForm.get('website')?.touched && userForm.get('website')?.invalid) {
+        <div class="error" >
+          @if (userForm.get('website')?.hasError('maxlength')) {
+            <small>Максимум 100 символов.</small>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- 🏠 Address -->
+    <div formGroupName="address" class="form-section">
+      <h4>Адрес</h4>
+      
+      <div class="form-group">
+        <label for="create-addr-city">Город *</label>
+        <input id="create-addr-city" type="text" formControlName="city">
+
+        @if (userForm.get('address.city')?.touched && userForm.get('address.city')?.invalid) {
+          <div class="error">
+            @if (userForm.get('address.city')?.hasError('required')) {
+              <small >Поле обязательно для заполнения.</small>
+            }
+            @if (userForm.get('address.city')?.hasError('maxlength')) {
+             <small >Максимум 50 символов.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="create-addr-street">Улица *</label>
+        <input id="create-addr-street" type="text" formControlName="street">
+
+        @if (userForm.get('address.street')?.touched && userForm.get('address.street')?.invalid) {
+          <div class="error">
+            @if (userForm.get('address.street')?.hasError('required')) {
+              <small >Поле обязательно для заполнения.</small>
+            }
+            @if (userForm.get('address.street')?.hasError('maxlength')) {
+             <small >Максимум 100 символов.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="create-addr-suite">Квартира/Офис</label>
+        <input id="create-addr-suite" type="text" formControlName="suite">
+
+        @if (userForm.get('address.suite')?.touched && userForm.get('address.suite')?.invalid) {
+          <div class="error" >
+            @if (userForm.get('address.suite')?.hasError('maxlength')) {
+              <small>Максимум 50 символов.</small>
+            }
+          </div>
+        }
+      </div>
+
+
+      <div class="form-group">
+        <label for="create-addr-zipcode">Почтовый индекс *</label>
+        <input id="create-addr-zipcode" type="text" formControlName="zipcode">
+
+        @if (userForm.get('address.zipcode')?.touched && userForm.get('address.zipcode')?.invalid) {
+          <div class="error">
+            @if (userForm.get('address.zipcode')?.hasError('required')) {
+             <small >Поле обязательно для заполнения.</small>
+            }
+            @if (userForm.get('address.zipcode')?.hasError('minlength')) {
+              <small >Минимум 5 символа.</small>
+            }
+            @if (userForm.get('address.zipcode')?.hasError('maxlength')) {
+              <small >Максимум 10 символов.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- 📍 Geo -->
+      <div formGroupName="geo" class="form-section-inner">
+        <h5>Геопозиция</h5>
+        <div class="form-group">
+          <label for="create-geo-lat">Широта (Lat) *</label>
+          <input id="create-geo-lat" type="text" formControlName="lat">
+          @if (userForm.get('address.geo.lat')?.touched && userForm.get('address.geo.lat')?.invalid) {
+            <div class="error" >
+              @if (userForm.get('address.geo.lat')?.hasError('required')) {
+                <small>Широта обязательна.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="create-geo-lng">Долгота (Lng) *</label>
+          <input id="create-geo-lng" type="text" formControlName="lng">
+          @if (userForm.get('address.geo.lng')?.touched && userForm.get('address.geo.lng')?.invalid) {
+            <div class="error">
+              @if (userForm.get('address.geo.lng')?.hasError('required')) {
+                <small>Долгота обязательна.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- 🏢 Company -->
+    <div formGroupName="company" class="form-section">
+      <h4>Компания</h4>
+      
+      <div class="form-group">
+        <label for="create-comp-name">Название компании *</label>
+        <input id="create-comp-name" type="text" formControlName="name">
+        @if (userForm.get('company.name')?.touched && userForm.get('company.name')?.invalid) {
+          <div class="error">
+           @if (userForm.get('company.name')?.hasError('required')) {
+              <small>Поле обязательно для заполнения.</small>
+            } 
+            @if (userForm.get('company.name')?.hasError('maxlength')) {
+              <small>Максимум 50 символов.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="create-comp-phrase">Слоган</label>
+        <input id="create-comp-phrase" type="text" formControlName="catchPhrase">
+
+        @if (userForm.get('company.catchPhrase')?.touched && userForm.get('company.catchPhrase')?.invalid) {
+          <div class="error">
+            @if (userForm.get('company.catchPhrase')?.hasError('maxlength')) {
+              <small>Максимум 200 символов.</small>
+            }  
+          </div>
+        }  
+      </div>
+
+      <div class="form-group">
+        <label for="create-comp-bs">Сфера деятельности</label>
+        <input id="create-comp-bs" type="text" formControlName="bs">
+        @if (userForm.get('company.bs')?.touched && userForm.get('company.bs')?.invalid) {
+          <div class="error">
+            @if (userForm.get('company.bs')?.hasError('maxlength')) {
+              <small>Максимум 100 символов.</small>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <button id="create-submit-btn" type="submit" [disabled]="userForm.invalid">
+      Создать пользователя
+    </button>
+  </form>
+</div>

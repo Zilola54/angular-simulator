@@ -678,7 +678,6 @@
     }
   }
 
-
   .other-materials {
     background-color: #1A3E3E;
     color: var(--primery-color);
@@ -695,7 +694,6 @@
     flex-direction: column;
     cursor: pointer;
   }
-
 }
 .message-container {
   position: fixed;
@@ -706,7 +704,6 @@
   right: 20px;
   
   .message {
-    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -747,7 +744,6 @@
       justify-content: flex-end;
       padding-left: 25px;
       
-      
       .messege-text {
         align-items:flex-start ;
         color: var(--primery-color);
@@ -774,9 +770,6 @@
   margin: 0 auto;
   justify-content: center;
 
-
-
-
   .title-container {
   position: relative;
   width: 580px;
@@ -798,8 +791,8 @@
       height: 20px;
       line-height: 20px;
       letter-spacing: 0%;
-
     }
+
     .title-destination {
       position: relative;
       display: flex;
@@ -820,8 +813,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px
-
-
   }
 
   .pinterest {
@@ -841,6 +832,5 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
-
   }
 }

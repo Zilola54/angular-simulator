@@ -11,6 +11,7 @@
   align-items: center;
   font-size: 24px;
 }
+
 .spinner {
   width: 60px;
   height: 60px;
@@ -291,8 +292,6 @@
   }
 }
 
-
-
 .footer {
   position: relative;
   display: flex;
@@ -369,10 +368,6 @@
       }
     }
   }
-
-
-
-
 
   .info {
     display: flex;
@@ -451,7 +446,7 @@
 
         .services-item {
           position: relative;
-          padding-left: 20px;  /* Освобождаем место слева под стрелочку */
+          padding-left: 20px;
         }
 
         .services-item::before {
@@ -461,10 +456,9 @@
           top: 50%;
           width: 6px;
           height: 6px;
-          border-top: 2px solid #ffffff;  /* Верхняя грань */
-          border-right: 2px solid #ffffff; /* Правая грань */
-          transform: translateY(-50%) rotate(45deg); /* Центрируем стрелку по вертикали */
-
+          border-top: 2px solid #ffffff; 
+          border-right: 2px solid #ffffff;
+          transform: translateY(-50%) rotate(45deg);
         }
       }
     }
@@ -503,9 +497,6 @@
       }
     }
   }
-
-
-
 
   .privacy-politicy {
     position: relative;

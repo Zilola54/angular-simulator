@@ -1,19 +1,14 @@
-
 import {RouterOutlet} from '@angular/router';
-import { HeaderComponent } from './header/header.component'; // путь может немного отличаться в зависимости от вашей структуры папок
+import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoaderComponent } from './loader/loader.component';
 import { Component } from '@angular/core';
 import { Colors } from '../enums/Color';
 import { Collection } from './collection';
- 
 import { FormsModule } from '@angular/forms';
-
 import { StorageService } from './services/StorageService'; 
 import { CommonModule } from '@angular/common'; 
 import { MessageComponent } from './message/message.component';
-
-
 
 @Component({
   selector: 'app-root',
@@ -25,48 +20,47 @@ import { MessageComponent } from './message/message.component';
 
 export class AppComponent {
 
-
 public companyName: string = 'РУМТИБЕТ';
 
-  public isDateActive: boolean = true;
+public isDateActive: boolean = true;
 
-  private timerId: any;
+private timerId: any;
+
+public currentDate: Date = new Date();
+
+public counter: number = 0;
+
+public isLoading: boolean = true;
+
+public inputValue: string = '';
+
   
-  public currentDate: Date = new Date();
 
-  public counter: number = 0;
+constructor(private storageService: StorageService) {
+  this.saveLastVisitDate();
+  this.updateVisitCount();
+} 
 
-  public isLoading: boolean = true;
-
-  public inputValue: string = '';
-
-  
-
-  constructor(private storageService: StorageService) {
-    this.saveLastVisitDate();
-    this.updateVisitCount();
-  } 
-
-  public checkColor(RGB: Colors): boolean {
-    return RGB === Colors.GREEN || RGB === Colors.RED || RGB === Colors.BLUE;
-  }
+public checkColor(RGB: Colors): boolean {
+  return RGB === Colors.GREEN || RGB === Colors.RED || RGB === Colors.BLUE;
+}
  
-  public saveLastVisitDate() {
-    this.storageService.set('lastVisit', new Date().toLocaleString());
-  }
+public saveLastVisitDate() {
+  this.storageService.set('lastVisit', new Date().toLocaleString());
+}
 
-  public updateVisitCount() {
-    
-    let currentVisits = this.storageService.get<number>('visitCount');
-    let newCount = 0;
+public updateVisitCount() {
   
-    if (currentVisits === null) {
-      newCount = 1;
-    } else {
-      newCount = currentVisits + 1;
-    }
-    this.storageService.set('visitCount', newCount);
+  let currentVisits = this.storageService.get<number>('visitCount');
+  let newCount = 0;
+
+  if (currentVisits === null) {
+    newCount = 1;
+  } else {
+    newCount = currentVisits + 1;
   }
+  this.storageService.set('visitCount', newCount);
+}
 
   public startTimer() {
   this.timerId = setInterval(() => {

@@ -9,8 +9,6 @@ export class StorageService {
   public set <T>(key: string, value: T ): void {
     localStorage.setItem(key,JSON.stringify(value))
   }
-
-
   public get <T> (key: string): T | null {
     const data = localStorage.getItem(key);
     if ( data != null) {
@@ -18,7 +16,6 @@ export class StorageService {
     } else {
       return null;
       }
-    
   }
 
   public remove (key: string): void {
@@ -27,5 +24,4 @@ export class StorageService {
   public clear (): void {
     localStorage.clear()
   }
-
 }

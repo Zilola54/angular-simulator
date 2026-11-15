@@ -39,8 +39,6 @@ public menuItems: ImenuItems[] = [
 
   public currentDate: Date = new Date();
 
-
-
     public startTimer() {
     this.timerId = setInterval(() => {
       this.currentDate = new Date();

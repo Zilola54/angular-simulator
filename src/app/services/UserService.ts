@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
-import { UserApiService } from '../services/user-api.service'; // Корректный путь к твоему API-сервису
-import { LoaderService } from '../services/loader.service'; // Корректный путь к твоему лоадер-сервису
-import { MessageService } from '../services/message.service'; // Корректный путь к твоему месседж-сервису
+import { BehaviorSubject, Observable, of, tap, catchError, finalize  } from 'rxjs';
+import { UserApiService } from '../services/user-api.service'; 
+import { LoaderService } from '../services/loader.service';
+import { MessageService } from '../services/message.service';
+import { HttpClient } from '@angular/common/http';
+import { LocalStorageService } from './LocalStorageService';
 
-// Опишем структуру пользователя (интерфейс), чтобы TypeScript не ругался
 export interface Geo {
   lat: string;
   lng: string;
@@ -25,7 +25,6 @@ export interface Company {
   bs: string;
 }
 
-// Главный интерфейс пользователя, который объединяет всё вместе
 export interface User {
   id: number;
   name: string;
@@ -33,55 +32,65 @@ export interface User {
   email: string;
   phone: string;
   website: string;
-  address: Address; // Вложенный объект адреса
-  company: Company; // Вложенный объект компании
+  address: Address;
+  company: Company;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  // Внедряем зависимости через современный inject
   private userApiService = inject(UserApiService);
+
   private loaderService = inject(LoaderService);
+
   private messageService = inject(MessageService);
 
-  // 1. Приватный сабджект для хранения списка пользователей (начальное значение — пустой массив [])
   private usersSubject$ = new BehaviorSubject<User[]>([]);
 
-  // 2. Публичный обсервабл для компонента, позволяющий получать значения из потока
+  private localStorageService = inject(LocalStorageService);
+
+  private readonly USERS_KEY = 'users';
+  
   public users$: Observable<User[]> = this.usersSubject$.asObservable();
 
-  constructor() {}
-
-  // Метод для установки новых значений в поток (setUsers)
+  constructor(private http: HttpClient) {}
+  
   setUsers(users: User[]): void {
     this.usersSubject$.next(users);
+
+    this.localStorageService.setItem(this.USERS_KEY, users);
   }
 
-  // Метод для получения текущего значения (getUsers)
   getUsers(): User[] {
     return this.usersSubject$.getValue();
   }
 
-  // Главный метод загрузки пользователей с бэкенда (loadUsers)
   loadUsers(): Observable<User[]> {
-    // Включаем спиннер в самую первую миллисекунду перед запросом
+    
+    const cachedUsers = this.localStorageService.getItem(this.USERS_KEY);
+    
+    if (cachedUsers && cachedUsers.length > 0) {
+    return of(cachedUsers);
+    } 
+    
     this.loaderService.showLoader();
 
     return this.userApiService.getUsers().pipe(
-      // Обработка ошибок
+      tap((users) => {
+        this.localStorageService.setItem(this.USERS_KEY, users);
+      }),
+
       catchError((error) => {
-        // Вызываем уведомление пользователя через MessageService
-         this.messageService.showError('Ошибка!', 'Не удалось загрузить пользователей'); 
-        // Возвращаем безопасный пустой массив в виде нового потока через of()
+        this.messageService.showError('Ошибка!', 'Не удалось загрузить пользователей'); 
         return of([]);
       }),
-      // Финал запроса (сработает всегда — и при успехе, и при ошибке)
       finalize(() => {
-        // Выключаем и скрываем наш глобальный спиннер
         this.loaderService.hideLoader();
       })
     );
+  }
+  deleteUser(userId: number): Observable<any> {
+    return this.userApiService.deleteUser(userId);
   }
 }
