@@ -3,7 +3,6 @@
   
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
     
-    <!-- 👤 Основные поля -->
     <div class="form-group">
       <label for="create-name">Имя *</label>
       <input id="create-name" type="text" formControlName="name">
@@ -92,7 +91,6 @@
       }
     </div>
 
-    <!-- 🏠 Address -->
     <div formGroupName="address" class="form-section">
       <h4>Адрес</h4>
       
@@ -141,7 +139,6 @@
         }
       </div>
 
-
       <div class="form-group">
         <label for="create-addr-zipcode">Почтовый индекс *</label>
         <input id="create-addr-zipcode" type="text" formControlName="zipcode">
@@ -161,7 +158,6 @@
         }
       </div>
 
-      <!-- 📍 Geo -->
       <div formGroupName="geo" class="form-section-inner">
         <h5>Геопозиция</h5>
         <div class="form-group">
@@ -190,7 +186,6 @@
       </div>
     </div>
 
-    <!-- 🏢 Company -->
     <div formGroupName="company" class="form-section">
       <h4>Компания</h4>
       

@@ -1,8 +1,36 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import {  IUsers } from '../../../interfaces/IUsers';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, NonNullableFormBuilder } from '@angular/forms';
 import { User } from '../../services/UserService';
+
+interface GeoForm {
+  lat: FormControl<string>;
+  lng: FormControl<string>;
+}
+
+interface AddressForm {
+  city: FormControl<string>;
+  street: FormControl<string>;
+  suite: FormControl<string>;
+  zipcode: FormControl<string>;
+  geo: FormGroup<GeoForm>;
+}
+
+interface CompanyForm {
+  name: FormControl<string>;
+  catchPhrase: FormControl<string>;
+  bs: FormControl<string>;
+}
+
+interface UserCreateForm {
+  name: FormControl<string>;
+  username: FormControl<string>;
+  email: FormControl<string>;
+  phone: FormControl<string>;
+  website: FormControl<string>;
+  address: FormGroup<AddressForm>;
+  company: FormGroup<CompanyForm>;
+}
 
 @Component({
   selector: 'app-user-create',
@@ -11,13 +39,14 @@ import { User } from '../../services/UserService';
   templateUrl: './user-create.component.html',
   styleUrl: './user-create.component.scss',
 })
+
 export class UserCreateComponent {
+
+  private readonly fb = inject(NonNullableFormBuilder);
+
   @Output() create = new EventEmitter<User>();
 
-  readonly userForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.userForm = this.fb.group({
+  readonly userForm: FormGroup<UserCreateForm> = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
@@ -41,7 +70,7 @@ export class UserCreateComponent {
         bs: ['', [Validators.maxLength(100)]]
        })    
      });
-  }  
+  
 
   onSubmit(): void {
     if (this.userForm.invalid) {
@@ -49,34 +78,13 @@ export class UserCreateComponent {
       return;
     }
 
-    const formValue = this.userForm.value;
+    const formValue = this.userForm.getRawValue();
 
     const newUser: User = {
       id: Date.now(),
-      name: formValue.name,
-      username: formValue.username,
-      email: formValue.email,
-      phone: formValue.phone,
-      website: formValue.website || '',
-      address: {
-        street: formValue.address.street,
-        suite:  formValue.address.suite || '',
-        city: formValue.address.city,
-        zipcode: formValue.address.zipcode,
-        geo: { 
-          lat: formValue.address.geo.lat, 
-          lng: formValue.address.geo.lng
-        }
-      },
-      company: {
-        name: formValue.company.name,
-        catchPhrase: formValue.company.catchPhrase || '',
-        bs: formValue.company.bs || ''
-      }
+      ...formValue
     };
     this.create.emit(newUser);
-
      this.userForm.reset();
   }
-
 }

@@ -16,12 +16,12 @@ export class UsersFilterComponent implements OnInit {
 
   @Output() search = new EventEmitter<string>();
 
-   searchControl = new FormControl('', { nonNullable: true });
+  searchControl = new FormControl('', { nonNullable: true });
 
   ngOnInit(): void {
     this.searchControl.valueChanges.pipe(
-       debounceTime(200),
-       map((value) => value.trim().toLowerCase()),
+      debounceTime(200),
+      map((value) => value.trim().toLowerCase()),
       distinctUntilChanged(),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe((searchQuery) => {
