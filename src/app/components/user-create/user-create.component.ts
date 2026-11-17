@@ -15,9 +15,9 @@ type CreateUserFormModel = Omit<User, 'id'>;
 })
 export class UserCreateComponent {
 
-  private readonly fb = inject(NonNullableFormBuilder);
+  private readonly fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
 
-  @Output() create = new EventEmitter<User>();
+  @Output() create: EventEmitter<User> = new EventEmitter<User>();
 
   readonly userForm: FormGroup<TypedForm<CreateUserFormModel>> = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
@@ -41,15 +41,15 @@ export class UserCreateComponent {
       name: ['', [Validators.required, Validators.maxLength(50)]],
       catchPhrase: ['', [Validators.maxLength(200)]],
       bs: ['', [Validators.maxLength(100)]]
-      })    
-    });
+    })    
+  });
   
 
-    onSubmit(): void {
-      if (this.userForm.invalid) {
-        this.userForm.markAllAsTouched();
-        return;
-      }
+  onSubmit(): void {
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+      return;
+    }
 
     const newUser: User = {
       id: Date.now(),

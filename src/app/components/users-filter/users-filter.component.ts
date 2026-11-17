@@ -12,19 +12,21 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs';
   styleUrl: './users-filter.component.scss',
 })
 export class UsersFilterComponent implements OnInit {
-  private destroyRef = inject(DestroyRef);
+   private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
-  @Output() search = new EventEmitter<string>();
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  searchControl = new FormControl('', { nonNullable: true });
+  public readonly searchControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
 
   ngOnInit(): void {
-    this.searchControl.valueChanges.pipe(
+    this.searchControl.valueChanges
+    .pipe(
       debounceTime(200),
-      map((value) => value.trim().toLowerCase()),
+      map((value: string): string => value.trim().toLowerCase()),
       distinctUntilChanged(),
       takeUntilDestroyed(this.destroyRef)
-    ).subscribe((searchQuery) => {
+    )
+    .subscribe((searchQuery: string): void => {
       this.search.emit(searchQuery);
     });
   }

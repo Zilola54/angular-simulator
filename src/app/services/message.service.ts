@@ -10,16 +10,36 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export class MessageService {
 
-  private _messages$ =  new BehaviorSubject<IMessages[]>([]);
+  private readonly _messages$: BehaviorSubject<IMessages[]> =  new BehaviorSubject<IMessages[]>([]);
+  private _nextId: number = 1;
 
-  public messages$: Observable<IMessages[]> = this._messages$.asObservable();
+  public readonly messages$: Observable<IMessages[]> = this._messages$.asObservable();
 
-  private _nextId = 1;
+  public showSuccess(text: string, desc: string): void {
+    this.addMessage(text, MessageType.SUCCESS, desc)
+  }
+  public showInfo(text: string, desc: string): void {
+    this.addMessage(text, MessageType.INFO, desc )
+  }
+  public showWarn(text: string, desc: string): void {
+    this.addMessage(text, MessageType.WARN,desc)
+  }
+  public showError(text: string, desc: string): void {
+    this.addMessage(text, MessageType.ERROR,desc)
+  }
+
+  public closeMessage(id: number): void {
+    
+    const updated: IMessages[] = this._messages$.value.filter(
+      (msg: IMessages): boolean => msg.id !== id
+    );
+    
+    this._messages$.next(updated);
+  }
 
   private addMessage(text: string, type: MessageType, desc: string): void {
-
-    const newId = this._nextId++;
-
+    const newId: number = this._nextId++;
+    
     const newMsg: IMessages = {
       id: newId,
       text: text,
@@ -27,32 +47,13 @@ export class MessageService {
       type: type,
       photo: 'photo-icon',
       icon: 'delete-icon',
-    }
+    };
 
     this._messages$.next([...this._messages$.value, newMsg]);
 
-    setTimeout(() => {
+    setTimeout((): void => {
       this.closeMessage(newId);
     }, 5000);
-  }
-  
-  public closeMessage(id: number): void {
-    
-    const updated = this._messages$.value.filter(msg => msg.id !== id);
-    
-    this._messages$.next(updated)
-  }
-   public showSuccess(text: string, desc: string) {
-    this.addMessage(text, MessageType.SUCCESS, desc)
-  }
-  public showInfo(text: string, desc: string) {
-    this.addMessage(text, MessageType.INFO, desc )
-  }
-  public showWarn(text: string, desc: string) {
-    this.addMessage(text, MessageType.WARN,desc)
-  }
-  public showError(text: string, desc: string) {
-    this.addMessage(text, MessageType.ERROR,desc)
   }
 }
 

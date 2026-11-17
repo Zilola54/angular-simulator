@@ -2,6 +2,7 @@ export interface IGeo {
   lat: string;
   lng: string;
 }
+
 export interface IAddress {
   city: string;
   street: string;
@@ -9,11 +10,13 @@ export interface IAddress {
   suite: string;
   geo: IGeo; 
 }
+
 export interface ICompany {
   name: string;
   catchPhrase: string;
   bs: string; 
 }
+
 export interface IUsers {
   id: number;
   name: string;
@@ -21,8 +24,6 @@ export interface IUsers {
   email: string;
   phone: string;
   website: string;
-
- address: IAddress;
- company: ICompany
- 
+  address: IAddress;
+  company: ICompany
 }

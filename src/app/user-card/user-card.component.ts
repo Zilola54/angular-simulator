@@ -9,10 +9,10 @@ import { IUsers } from '../../interfaces/IUsers';
 })
 
 export class UserCardComponent {
- @Input({ required: true }) user!: IUsers
- @Output() delete = new EventEmitter<number>();
+  @Input({ required: true }) public user!: IUsers
+  @Output() public delete: EventEmitter<number> = new EventEmitter<number>();
 
-  remove() {
+  remove(): void {
     this.delete.emit(this.user.id);
   }
 }

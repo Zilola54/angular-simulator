@@ -1,5 +1,5 @@
 export interface ImenuItems {
-  title: string,
-  url: string,
-  isExact: boolean,
+  title: string;
+  url: string;
+  isExact: boolean;
 }

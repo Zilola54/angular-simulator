@@ -1,5 +1,4 @@
 export interface IVouchers {
-
   title: string;
   subtitle: string;
   price: number;

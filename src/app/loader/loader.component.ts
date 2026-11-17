@@ -11,6 +11,6 @@ import {AsyncPipe} from '@angular/common';
   styleUrl: './loader.component.scss',
 })
 export class LoaderComponent {
-  public loaderService = inject(LoaderService);
+  public readonly loaderService: LoaderService = inject(LoaderService);
   public readonly isLoading$: Observable<boolean> = this.loaderService.readonlyIsLoading$;
 }

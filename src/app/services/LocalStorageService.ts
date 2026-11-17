@@ -5,28 +5,26 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
   
-   constructor() {}
-
-   setItem(key: string, value: any): void {
+  public setItem<T> (key: string, value: T ): void {
     try {
-      const stringValue = JSON.stringify(value);
+      const stringValue: string = JSON.stringify(value);
       localStorage.setItem(key, stringValue);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Ошибка записи в LocalStorage:', error);
     }
   }
 
-  getItem(key: string): any {
+  public getItem<T>(key: string): T | null {
     try {
-      const value = localStorage.getItem(key);
-      return value ? JSON.parse(value) : null;
-    } catch (error) {
+      const value: string | null = localStorage.getItem(key);
+      return value ? (JSON.parse(value) as T ) : null;
+    } catch (error: unknown) {
       console.error('Ошибка чтения из LocalStorage:', error);
       return null;
     }
   }
 
-   removeItem(key: string): void {
+  public removeItem(key: string): void {
     localStorage.removeItem(key);
   }
 }

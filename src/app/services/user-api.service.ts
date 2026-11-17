@@ -8,17 +8,15 @@ import { User } from './UserService';
 })
 export class UserApiService {
   
-  private http = inject(HttpClient);
+  private readonly http: HttpClient = inject(HttpClient);
   
-  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  private readonly apiUrl: string = 'https://jsonplaceholder.typicode.com/users';
 
-  constructor() {}
-
-  getUsers(): Observable<User[]> {
+  public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
 
-  deleteUser(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  public deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

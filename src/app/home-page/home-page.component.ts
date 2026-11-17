@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
+  private readonly messageService: MessageService = inject(MessageService);
 
   public companyName: string = 'РУМТИБЕТ'; 
 
@@ -136,17 +137,16 @@ export class HomePageComponent {
     }
   ]
 
-  public triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string) {
-      const type = MessageType[typeString];
-    if (typeString === 'SUCCESS') {
+  public triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string): void {
+      const type: MessageType = MessageType[typeString];
+    if (type === MessageType.SUCCESS) {
       this.messageService.showSuccess(text, desc);
-    } else if (typeString === 'INFO') {
+    } else if (type === MessageType.INFO) {
       this.messageService.showInfo(text, desc);
-    } else if (typeString === 'WARN') {
+    } else if (type === MessageType.WARN) {
       this.messageService.showWarn(text, desc);
-    } else if (typeString === 'ERROR') {
+    } else if (type === MessageType.ERROR) {
       this.messageService.showError(text, desc);
     }
   }
-  private messageService = inject(MessageService);
 }
