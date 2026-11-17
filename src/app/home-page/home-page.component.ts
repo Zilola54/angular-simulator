@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { IAdvantages } from '../../interfaces/IAdvantages';
 import { IVouchers } from '../../interfaces/IVouchers';
 import { IArticles } from '../../interfaces/IArticles';
-import { IPhotos } from '../../interfaces/IPhotos';
 import { MessageType } from '../../enums/Messege';
 import { MessageService } from '../../app/services/message.service';
 
@@ -110,32 +109,14 @@ export class HomePageComponent {
     },
   ]
   
-  public photos: IPhotos[] = [
-    {
-      id: 1,
-      photo: 'balls-icon',
-    },
-    {
-      id: 2,
-      photo: 'camera-icon',
-    },
-    {
-      id: 3,
-      photo: 'skyscraper-icon',
-    },
-    {
-      id: 4,
-      photo: 'port-icon',
-    },
-    {
-      id: 5,
-      photo: 'grand-canyon-icon',
-    },
-    {
-      id: 6,
-      photo: 'book-icon',
-    }
-  ]
+  public photos: string[] = [
+  'balls-icon',
+  'camera-icon',
+  'skyscraper-icon',
+  'port-icon',
+  'grand-canyon-icon',
+  'book-icon',
+  ];
 
   public triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string): void {
       const type: MessageType = MessageType[typeString];
