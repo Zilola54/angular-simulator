@@ -5,36 +5,7 @@ import { LoaderService } from '../services/loader.service';
 import { MessageService } from '../services/message.service';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './LocalStorageService';
-
-export interface Geo {
-  lat: string;
-  lng: string;
-}
-
-export interface Address {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: Geo;
-}
-
-export interface Company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
-
-export interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
-  website: string;
-  address: Address;
-  company: Company;
-}
+import { IUsers } from '../../interfaces/IUsers';
 
 @Injectable({
   providedIn: 'root'
@@ -50,23 +21,23 @@ export class UserService {
 
   private readonly USERS_KEY: string = 'users';
   
-  private readonly usersSubject$ = new BehaviorSubject<User[]>([]);
+  private readonly usersSubject$ = new BehaviorSubject<IUsers[]>([]);
   
-  public readonly users$: Observable<User[]> = this.usersSubject$.asObservable();
+  public readonly users$: Observable<IUsers[]> = this.usersSubject$.asObservable();
 
   constructor(private http: HttpClient) {}
   
-  public setUsers(users: User[]): void {
+  public setUsers(users: IUsers[]): void {
     this.usersSubject$.next(users);
-    this.localStorageService.setItem<User[]>(this.USERS_KEY, users);
+    this.localStorageService.setItem<IUsers[]>(this.USERS_KEY, users);
   }
 
-  public getUsers(): User[] {
+  public getUsers(): IUsers[] {
     return this.usersSubject$.getValue();
   }
 
-  public loadUsers(): Observable<User[]> {
-    const cachedUsers: User[] | null = this.localStorageService.getItem<User[]>(this.USERS_KEY);
+  public loadUsers(): Observable<IUsers[]> {
+    const cachedUsers: IUsers[] | null = this.localStorageService.getItem<IUsers[]>(this.USERS_KEY);
     
     if (cachedUsers && cachedUsers.length > 0) {
       return of(cachedUsers);
@@ -75,10 +46,10 @@ export class UserService {
     this.loaderService.showLoader();
 
     return this.userApiService.getUsers().pipe(
-      tap((users: User[]): void => {
-        this.localStorageService.setItem<User[]>(this.USERS_KEY, users);
+      tap((users: IUsers[]): void => {
+        this.localStorageService.setItem<IUsers[]>(this.USERS_KEY, users);
       }),
-      catchError((_error: unknown): Observable<User[]> => {
+      catchError((_error: unknown): Observable<IUsers[]> => {
         this.messageService.showError('Ошибка!', 'Не удалось загрузить пользователей'); 
         return of([]);
       }),

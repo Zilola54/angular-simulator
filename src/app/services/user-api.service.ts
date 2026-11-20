@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from './UserService';
+import { IUsers } from '../../interfaces/IUsers';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class UserApiService {
   
   private readonly apiUrl: string = 'https://jsonplaceholder.typicode.com/users';
 
-  public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
+  public getUsers(): Observable<IUsers[]> {
+    return this.http.get<IUsers[]>(this.apiUrl);
   }
 
   public deleteUser(id: number): Observable<void> {

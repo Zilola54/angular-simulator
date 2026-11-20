@@ -1,5 +1,6 @@
 import { CommonModule, AsyncPipe } from '@angular/common';
-import { UserService, User } from '../services/UserService';
+import { UserService } from '../services/UserService';
+import { IUsers } from '../../interfaces/IUsers'; 
 import { Component, inject, OnInit } from '@angular/core';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { take, map, BehaviorSubject, combineLatest, Observable } from 'rxjs';
@@ -18,24 +19,24 @@ export class UsersPageComponent implements OnInit {
   private readonly userService: UserService = inject(UserService);
   private readonly searchSubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   
-  public readonly users$: Observable<User[]> = this.userService.users$;
+  public readonly users$: Observable<IUsers[]> = this.userService.users$;
 
-  public readonly filteredUsers$: Observable<User[]> = combineLatest([
+  public readonly filteredUsers$: Observable<IUsers[]> = combineLatest([
     this.users$,
     this.searchSubject$.asObservable(),
   ]).pipe(
-    map(([users, query]: [User[], string]): User[] => {
+    map(([users, query]: [IUsers[], string]): IUsers[] => {
       if (!query) {
         return users;
       }
-      return users.filter((user: User): boolean => 
+      return users.filter((user: IUsers): boolean => 
         user.name.toLowerCase().includes(query)
       );
     })
   );
 
   ngOnInit(): void {
-    this.userService.loadUsers().subscribe((users:  User[]): void => {
+    this.userService.loadUsers().subscribe((users: IUsers[]): void => {
       this.userService.setUsers(users);
     });
   }
@@ -44,17 +45,17 @@ export class UsersPageComponent implements OnInit {
     this.searchSubject$.next(query);
   }
 
-  public onUserCreate(newUser: User): void {
-    this.users$.pipe(take(1)).subscribe ((currentUsers: User[]): void => {
-      const updatedUsers: User[] = [newUser, ...currentUsers];
+  public onUserCreate(newUser: IUsers): void {
+    this.users$.pipe(take(1)).subscribe ((currentUsers: IUsers[]): void => {
+      const updatedUsers: IUsers[] = [newUser, ...currentUsers];
       this.userService.setUsers(updatedUsers);
     });
   }
   
   public onDeleteUser(userId: number): void {
-    this.users$.pipe(take(1)).subscribe((currentUsers: User[]): void => {
-      const updatedUsers: User[] = currentUsers.filter(
-        (user: User): boolean => user.id !== userId
+    this.users$.pipe(take(1)).subscribe((currentUsers: IUsers[]): void => {
+      const updatedUsers: IUsers[] = currentUsers.filter(
+        (user: IUsers): boolean => user.id !== userId
       );
       this.userService.setUsers(updatedUsers); 
     });

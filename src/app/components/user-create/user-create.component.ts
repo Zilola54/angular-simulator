@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, Validators, NonNullableFormBuilder } from '@angular/forms';
-import { User } from '../../services/UserService';
+import { IUsers } from '../../../interfaces/IUsers';
 import { TypedForm } from '../../../interfaces/typed-form.type';
 
-type CreateUserFormModel = Omit<User, 'id'>;
+type CreateUserFormModel = Omit<IUsers, 'id'>;
 
 @Component({
   selector: 'app-user-create',
@@ -17,7 +17,7 @@ export class UserCreateComponent {
 
   private readonly fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
 
-  @Output() create: EventEmitter<User> = new EventEmitter<User>();
+  @Output() create: EventEmitter<IUsers> = new EventEmitter<IUsers>();
 
   readonly userForm: FormGroup<TypedForm<CreateUserFormModel>> = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
@@ -51,7 +51,7 @@ export class UserCreateComponent {
       return;
     }
 
-    const newUser: User = {
+    const newUser: IUsers = {
       id: Date.now(),
       ...this.userForm.getRawValue(),
     };

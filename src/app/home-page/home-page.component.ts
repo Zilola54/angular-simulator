@@ -108,14 +108,14 @@ export class HomePageComponent {
       btnOfRead:'читать статью',
     },
   ]
-  
+
   public photos: string[] = [
-  'balls-icon',
-  'camera-icon',
-  'skyscraper-icon',
-  'port-icon',
-  'grand-canyon-icon',
-  'book-icon',
+    'balls-icon',
+    'camera-icon',
+    'skyscraper-icon',
+    'port-icon',
+    'grand-canyon-icon',
+    'book-icon',
   ];
 
   public triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string): void {
