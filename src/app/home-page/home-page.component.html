@@ -105,7 +105,7 @@
           @for (advantage of advantages; track advantage.id) {
             <div class="advantage-item">
 
-              <img [src]="advantage.icon" class="advantage-icon" alt="">
+              <img [src]=" 'images/' + advantage.icon + '.svg'" class="advantage-icon" alt="">
 
               <div class="advantage-content">
                 <h3 class="fs-18 bold7">{{ advantage.title }}</h3>
@@ -214,15 +214,11 @@
     </div>
 
     <div class="photo-report">
-
-      @for (photo of photos; track photo.id) {
+      @for (photo of photos; track photo) {
         <div> 
-          <img [src]=" 'images/photo/' +  photo.photo + '.svg' " alt="">
+          <img [src]=" 'images/photo/' +  photo + '.svg' " alt="">
         </div>
       }
-
-
-
     </div>
 
     <button 
@@ -230,7 +226,6 @@
       class="pinterest"
       >Наш Pinterest
     </button>
-
 
   </section>
 

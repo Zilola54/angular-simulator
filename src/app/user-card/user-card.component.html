@@ -1,0 +1,17 @@
+<div class="card-content">
+  <h3>{{ user.name }}</h3>
+  
+  <p><strong>Username:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  
+  <p><strong>Phone:</strong> {{ user.phone }}</p>
+  <p><strong>Website:</strong> {{ user.website || 'Неизвестно'  }}</p>
+
+  <p><strong>Company:</strong> {{ user.company.name }}</p>
+  <p><strong>Слоган компании:</strong> {{ user.company.catchPhrase || 'Неизвестно' }}</p>
+  <p><strong>Сфера деятельности:</strong> {{ user.company.bs || 'Неизвестно' }}</p>
+
+    <p><strong>Квартира/Офис:</strong> {{ user.address.suite || 'Неизвестно' }}</p>
+</div>
+
+<button (click)="remove()">Удалить пользователя</button>

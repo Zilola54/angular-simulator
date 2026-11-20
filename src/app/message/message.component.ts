@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
-import { MessageType } from '../../enums/Messege';
+import { Observable } from 'rxjs';
+import { IMessages } from '../../interfaces/IMessages'; 
 import { MessageService } from '../../app/services/message.service';
 
 @Component({
@@ -10,20 +11,12 @@ import { MessageService } from '../../app/services/message.service';
   styleUrl: './message.component.scss',
 })
 export class MessageComponent {
+  private readonly messageService: MessageService = inject(MessageService);
 
-public get appMessages() {
-    return this.messageService.messages;
+  public readonly messages$: Observable<IMessages[]> = this.messageService.messages$;
+
+  public closeToast(id: number): void {
+    this.messageService.closeMessage(id);
   }
-  
-  public closeToast(id: number) {
-  this.messageService.closeMessage(id);
 }
- constructor(private messageService: MessageService) {
-
- }
- 
-
- 
-}
-
 
