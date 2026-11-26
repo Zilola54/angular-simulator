@@ -11,8 +11,6 @@
         @for (menuItem of menuItems; track menuItem.title) {
           <a class="navigation-wrapper" [routerLink]="menuItem.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: menuItem.isExact }">{{ menuItem.title }}</a>
         }
-        
-
       </div>
 
 
@@ -35,7 +33,3 @@
 
     </div>
   </header>
-
-
-
-

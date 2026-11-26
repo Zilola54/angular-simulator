@@ -15,15 +15,14 @@ export class StorageService {
     }
   }
 
-  get <T> (key: string): T | null {
-    try {
-      const data: string | null = localStorage.getItem(key);
-      return data !== null ? (JSON.parse(data) as T) : null;
-    } catch (error: unknown) {
-      console.error('Ошибка при чтении из LocalStorage:', error);
-      return null;
-    }
+get<T>(key: string): T | null {
+  try {
+    return JSON.parse(localStorage.getItem(key) ?? 'null') as T | null;
+  } catch (error: unknown) {
+    console.error('Ошибка при чтении из LocalStorage:', error);
+    return null;
   }
+}
 
   remove (key: string): void {
     localStorage.removeItem(key)

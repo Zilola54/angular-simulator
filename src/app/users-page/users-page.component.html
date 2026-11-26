@@ -5,7 +5,7 @@
 
 <div class="users-container">
   @for (currentUser of filteredUsers$ | async; track currentUser.id) {
-  <!-- Передаем текущего пользователя в твой @Input [user] -->
+
   <app-user-card [user]="currentUser" (delete)="onDeleteUser($event)"></app-user-card>
   } @empty {
     <p class="no-users">НЕТ ПОЛЬЗОВАТЕЛЕЙ ДЛЯ ИЗОБРАЖЕНИЯ</p>

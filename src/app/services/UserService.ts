@@ -21,7 +21,7 @@ export class UserService {
 
   private readonly USERS_KEY: string = 'users';
   
-  private readonly usersSubject$ = new BehaviorSubject<IUsers[]>([]);
+  private readonly usersSubject$: BehaviorSubject<IUsers[]> = new BehaviorSubject<IUsers[]>([]);
   
   public readonly users$: Observable<IUsers[]> = this.usersSubject$.asObservable();
 
