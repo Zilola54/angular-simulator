@@ -8,13 +8,13 @@ export class LoaderService {
 
   private _isLoading$: BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false);
 
-  public readonly readonlyIsLoading$: Observable<boolean> = this._isLoading$.asObservable();
+  readonly readonlyIsLoading$: Observable<boolean> = this._isLoading$.asObservable();
 
-  public showLoader(): void {
+  showLoader(): void {
     this._isLoading$.next(true)
   }
 
-  public hideLoader() : void {
+  hideLoader() : void {
     this._isLoading$.next(false)
   }
 }

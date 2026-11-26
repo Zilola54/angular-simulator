@@ -13,22 +13,22 @@ export class MessageService {
   private readonly _messages$: BehaviorSubject<IMessages[]> =  new BehaviorSubject<IMessages[]>([]);
   private _nextId: number = 1;
 
-  public readonly messages$: Observable<IMessages[]> = this._messages$.asObservable();
+  readonly messages$: Observable<IMessages[]> = this._messages$.asObservable();
 
-  public showSuccess(text: string, desc: string): void {
+  showSuccess(text: string, desc: string): void {
     this.addMessage(text, MessageType.SUCCESS, desc)
   }
-  public showInfo(text: string, desc: string): void {
+  showInfo(text: string, desc: string): void {
     this.addMessage(text, MessageType.INFO, desc )
   }
-  public showWarn(text: string, desc: string): void {
+  showWarn(text: string, desc: string): void {
     this.addMessage(text, MessageType.WARN,desc)
   }
-  public showError(text: string, desc: string): void {
+  showError(text: string, desc: string): void {
     this.addMessage(text, MessageType.ERROR,desc)
   }
 
-  public closeMessage(id: number): void {
+  closeMessage(id: number): void {
     
     const updated: IMessages[] = this._messages$.value.filter(
       (msg: IMessages): boolean => msg.id !== id

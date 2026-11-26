@@ -19,15 +19,15 @@ import { CommonModule } from '@angular/common';
 export class HomePageComponent {
   private readonly messageService: MessageService = inject(MessageService);
 
-  public companyName: string = 'РУМТИБЕТ'; 
+  companyName: string = 'РУМТИБЕТ'; 
 
-  public selectedLocation: string = '';
+  selectedLocation: string = '';
 
-  public selectedDate: string = '';
+  selectedDate: string = '';
 
-  public selectedParticipants: string = '';
+  selectedParticipants: string = '';
   
-  public advantages: IAdvantages[] = [
+  advantages: IAdvantages[] = [
     {
       id: 1,
       title: 'Опытный гид',
@@ -48,7 +48,7 @@ export class HomePageComponent {
     },
   ];
   
-  public vouchers: IVouchers[] = [
+  vouchers: IVouchers[] = [
     {
       title: 'Озеро возле гор',
       subtitle: 'романтическое приключение',
@@ -78,7 +78,7 @@ export class HomePageComponent {
     },
   ];
   
-  public articles: IArticles[] = [
+  articles: IArticles[] = [
     {
       icon: 'italia-icon',
       title: 'Красивая Италия, какая она в реальности ?',
@@ -109,7 +109,7 @@ export class HomePageComponent {
     },
   ]
 
-  public photos: string[] = [
+  photos: string[] = [
     'balls-icon',
     'camera-icon',
     'skyscraper-icon',
@@ -118,7 +118,7 @@ export class HomePageComponent {
     'book-icon',
   ];
 
-  public triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string): void {
+  triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string): void {
       const type: MessageType = MessageType[typeString];
     if (type === MessageType.SUCCESS) {
       this.messageService.showSuccess(text, desc);

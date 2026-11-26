@@ -16,7 +16,7 @@ export class UsersFilterComponent implements OnInit {
 
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  public readonly searchControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
+  readonly searchControl: FormControl<string> = new FormControl<string>('', { nonNullable: true });
 
   ngOnInit(): void {
     this.searchControl.valueChanges

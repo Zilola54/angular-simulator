@@ -22,17 +22,17 @@ export class AppComponent implements OnInit, OnDestroy {
 private readonly storageService: StorageService = inject(StorageService);
 private timerId: ReturnType<typeof setInterval> | null = null;
 
-public companyName: string = 'РУМТИБЕТ';
+companyName: string = 'РУМТИБЕТ';
 
-public isDateActive: boolean = true;
+isDateActive: boolean = true;
 
-public currentDate: Date = new Date();
+currentDate: Date = new Date();
 
-public counter: number = 0;
+counter: number = 0;
 
-public isLoading: boolean = true;
+isLoading: boolean = true;
 
-public inputValue: string = '';
+inputValue: string = '';
 
 ngOnInit(): void {
   this.saveLastVisitDate();
@@ -50,29 +50,28 @@ ngOnDestroy(): void {
   }
 }
   
-public checkColor(RGB: Colors): boolean {
+checkColor(RGB: Colors): boolean {
   return RGB === Colors.GREEN || RGB === Colors.RED || RGB === Colors.BLUE;
 }
  
-public saveLastVisitDate(): void {
+saveLastVisitDate(): void {
   this.storageService.set<string>('lastVisit', new Date().toLocaleString());
 }
 
-public updateVisitCount(): void {
-  
+updateVisitCount(): void {
   const currentVisits: number | null  = this.storageService.get<number>('visitCount');
   const newCount: number = currentVisits === null ? 1 : currentVisits + 1;
 
   this.storageService.set<number>('visitCount', newCount);
 }
 
-  public startTimer(): void {
+  startTimer(): void {
     this.timerId = setInterval((): void => {
       this.currentDate = new Date();
     }, 1000);
   }
 
-  public toggleWidget(): void {
+  toggleWidget(): void {
     this.isDateActive = !this.isDateActive;
 
     if (this.isDateActive) {

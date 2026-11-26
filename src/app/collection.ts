@@ -4,19 +4,19 @@ export class Collection<T> {
   constructor(initialItems: T[] = []) {
     this.items = initialItems;
   }
-  public getElements(): T[] {
+  getElements(): T[] {
     return  this.items;
   }
-  public getThisElements(index: number): T | undefined {
+  getThisElements(index: number): T | undefined {
     return this.items[index];
   }
-  public deleteElements(): void {
+  deleteElements(): void {
     this.items = [];
   }
-  public deleteThisElements(index: number): void {
+  deleteThisElements(index: number): void {
     this.items.splice(index, 1);
   }
-  public replaseThisElements(index: number, newItem: T): void {
+  replaseThisElements(index: number, newItem: T): void {
     this.items[index] = newItem
   }
 }

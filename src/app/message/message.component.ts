@@ -13,9 +13,9 @@ import { MessageService } from '../../app/services/message.service';
 export class MessageComponent {
   private readonly messageService: MessageService = inject(MessageService);
 
-  public readonly messages$: Observable<IMessages[]> = this.messageService.messages$;
+  readonly messages$: Observable<IMessages[]> = this.messageService.messages$;
 
-  public closeToast(id: number): void {
+  closeToast(id: number): void {
     this.messageService.closeMessage(id);
   }
 }

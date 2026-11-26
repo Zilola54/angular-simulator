@@ -17,7 +17,7 @@ export class HeaderComponent {
 
   private timerId: ReturnType<typeof setInterval> | null = null;
 
-  public menuItems: ImenuItems[] = [
+  menuItems: ImenuItems[] = [
     {
       title: 'Главная',
       url: '/',
@@ -30,11 +30,11 @@ export class HeaderComponent {
     }
   ]
 
-  public companyName: string = 'РУМТИБЕТ';
-  public isDateActive: boolean = true;
-  public counter: number = 0;
-  public isLoading: boolean = true;
-  public currentDate: Date = new Date();
+  companyName: string = 'РУМТИБЕТ';
+  isDateActive: boolean = true;
+  counter: number = 0;
+  isLoading: boolean = true;
+  currentDate: Date = new Date();
 
   ngOnInit(): void {
     this.startTimer();
@@ -50,13 +50,13 @@ export class HeaderComponent {
     }
   }
 
-  public startTimer(): void {
+  startTimer(): void {
     this.timerId = setInterval((): void => {
       this.currentDate = new Date();
       }, 1000);
   }
 
-  public toggleWidget(): void {
+  toggleWidget(): void {
     this.isDateActive = !this.isDateActive;
 
     if (this.isDateActive) {
@@ -66,7 +66,7 @@ export class HeaderComponent {
     }
   }
 
-  public triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string): void {
+  triggerMessage(text: string, typeString: 'SUCCESS' | 'INFO' | 'WARN' | 'ERROR', desc: string): void {
       const type: MessageType = MessageType[typeString];
     if (type === MessageType.SUCCESS) {
       this.messageService.showSuccess(text, desc);

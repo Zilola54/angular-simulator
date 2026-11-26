@@ -27,16 +27,16 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
   
-  public setUsers(users: IUsers[]): void {
+  setUsers(users: IUsers[]): void {
     this.usersSubject$.next(users);
     this.localStorageService.setItem<IUsers[]>(this.USERS_KEY, users);
   }
 
-  public getUsers(): IUsers[] {
+  getUsers(): IUsers[] {
     return this.usersSubject$.getValue();
   }
 
-  public loadUsers(): Observable<IUsers[]> {
+  loadUsers(): Observable<IUsers[]> {
     const cachedUsers: IUsers[] | null = this.localStorageService.getItem<IUsers[]>(this.USERS_KEY);
     
     if (cachedUsers && cachedUsers.length > 0) {
@@ -58,7 +58,7 @@ export class UserService {
       })
     );
   }
-  public deleteUser(userId: number): Observable<void> {
+  deleteUser(userId: number): Observable<void> {
     return this.userApiService.deleteUser(userId);
   }
 }

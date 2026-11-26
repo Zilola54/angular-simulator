@@ -1,11 +1,9 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
-type FormField<T> = T extends Array<infer U>
-  ? FormArray<FormField<U>>
-  : T extends object
-  ? FormGroup<TypedForm<T>>
-  : FormControl<T>;
-
 export type TypedForm<T> = {
-  [K in keyof T]-?: FormField<T[K]>;
+  [K in keyof T]-?: T[K] extends object
+    ? T[K] extends Date
+      ? FormControl<T[K]>
+      : FormGroup<TypedForm<T[K]>>
+    : FormControl<T[K]>;
 };

@@ -12,11 +12,11 @@ export class UserApiService {
   
   private readonly apiUrl: string = 'https://jsonplaceholder.typicode.com/users';
 
-  public getUsers(): Observable<IUsers[]> {
+  getUsers(): Observable<IUsers[]> {
     return this.http.get<IUsers[]>(this.apiUrl);
   }
 
-  public deleteUser(id: number): Observable<void> {
+  deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

@@ -19,9 +19,9 @@ export class UsersPageComponent implements OnInit {
   private readonly userService: UserService = inject(UserService);
   private readonly searchSubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   
-  public readonly users$: Observable<IUsers[]> = this.userService.users$;
+  readonly users$: Observable<IUsers[]> = this.userService.users$;
 
-  public readonly filteredUsers$: Observable<IUsers[]> = combineLatest([
+  readonly filteredUsers$: Observable<IUsers[]> = combineLatest([
     this.users$,
     this.searchSubject$.asObservable(),
   ]).pipe(
@@ -41,18 +41,18 @@ export class UsersPageComponent implements OnInit {
     });
   }
 
-  public onSearch(query: string): void {
+  onSearch(query: string): void {
     this.searchSubject$.next(query);
   }
 
-  public onUserCreate(newUser: IUsers): void {
+  onUserCreate(newUser: IUsers): void {
     this.users$.pipe(take(1)).subscribe ((currentUsers: IUsers[]): void => {
       const updatedUsers: IUsers[] = [newUser, ...currentUsers];
       this.userService.setUsers(updatedUsers);
     });
   }
   
-  public onDeleteUser(userId: number): void {
+  onDeleteUser(userId: number): void {
     this.users$.pipe(take(1)).subscribe((currentUsers: IUsers[]): void => {
       const updatedUsers: IUsers[] = currentUsers.filter(
         (user: IUsers): boolean => user.id !== userId
