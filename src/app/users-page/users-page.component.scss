@@ -1,0 +1,84 @@
+:host {
+  display: block;
+  padding-top: 150px; 
+}
+ 
+.users-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px; 
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.user-card {
+  background-color: #ffffff;
+  border-radius: 4px;
+  border-top: 4px solid #f4a261; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+}
+.card-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.card-header .username {
+  color: #e76f51;
+  font-size: 14px;
+  display: block;
+  margin-top: 4px;
+}
+
+.card-section h3 {
+  font-size: 11px;
+  color: #95a5a6;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 4px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.row-label {
+  color: #7f8c8d;
+}
+
+.row-value {
+  color: #2c3e50;
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+}
+
+.value-link {
+  color: #e76f51;
+  text-decoration: none;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.no-users {
+  background-color:#b85c5c;
+  font-size: 10px;
+  color: #ffffff;
+  font-weight:600;
+  border-radius: 13px;
+  padding: 12px 24px;
+  margin: 20px auto;
+  max-width: max-content;
+}
